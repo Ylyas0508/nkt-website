@@ -1,0 +1,116 @@
+[
+  {
+    "id": "prod-001",
+    "name": {
+      "en": "Diesel Fuel D2 (EN590)",
+      "ru": "Дизельное топливо Д2 (EN590)",
+      "zh": "柴油 D2 (EN590)",
+      "tr": "Motorin D2 (EN590)"
+    },
+    "description": {
+      "en": "High-quality diesel fuel EN590 standard. Available in large volumes. Delivery terms: CIF, FOB. Documentation: POP, SGS, CIQ, Bill of Lading. Origin: Russia/Kazakhstan.",
+      "ru": "Высококачественное дизельное топливо стандарта EN590. Доступно в больших объёмах. Условия поставки: CIF, FOB. Документация: POP, SGS, CIQ, коносамент.",
+      "zh": "高品质EN590标准柴油，大批量供应。交货条款：CIF、FOB。文件：POP、SGS、CIQ、提单。产地：俄罗斯/哈萨克斯坦。",
+      "tr": "EN590 standartlarında yüksek kaliteli motorin. Büyük hacimde temin edilebilir. Teslimat: CIF, FOB. Belgeler: POP, SGS, CIQ, Konişmento."
+    },
+    "price": "Contact for pricing",
+    "category": "oil-petroleum",
+    "image": "https://c4.wallpaperflare.com/wallpaper/354/359/832/landscape-industry-the-evening-silhouettes-wallpaper-preview.jpg",
+    "createdAt": "2024-01-10T08:00:00Z"
+  },
+  {
+    "id": "prod-002",
+    "name": {
+      "en": "Steel Billets (3SP/5SP)",
+      "ru": "Стальные заготовки (3СП/5СП)",
+      "zh": "钢坯 (3SP/5SP)",
+      "tr": "Çelik Kütük (3SP/5SP)"
+    },
+    "description": {
+      "en": "Continuously cast steel billets, grades 3SP and 5SP. Size: 150x150mm, length 6-12m. Mill test certificates available. FOB/CIF delivery from Black Sea or Chinese ports.",
+      "ru": "Непрерывнолитые стальные заготовки марок 3СП и 5СП. Размер: 150х150мм, длина 6-12м. Имеются заводские сертификаты. Поставка FOB/CIF.",
+      "zh": "连铸钢坯，牌号3SP和5SP。规格：150x150mm，长度6-12米。提供厂检证书。FOB/CIF交货。",
+      "tr": "Sürekli döküm çelik kütük, 3SP ve 5SP kalite. Boyut: 150x150mm, uzunluk 6-12m. Fabrika test sertifikaları mevcuttur."
+    },
+    "price": "Contact for pricing",
+    "category": "metallurgy",
+    "image": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80",
+    "createdAt": "2024-01-15T08:00:00Z"
+  },
+  {
+    "id": "prod-003",
+    "name": {
+      "en": "Granulated Sulfur (98.5%+)",
+      "ru": "Гранулированная сера (98,5%+)",
+      "zh": "颗粒硫磺 (98.5%+)",
+      "tr": "Granül Kükürt (%98.5+)"
+    },
+    "description": {
+      "en": "High-purity granulated sulfur, purity 98.5% and above. Used in fertilizer production, chemical industry, agriculture. Available in bags or bulk. SGS certified.",
+      "ru": "Гранулированная сера высокой чистоты, чистота 98,5% и выше. Применяется в производстве удобрений, химической промышленности. В мешках или навалом. Сертификат SGS.",
+      "zh": "高纯度颗粒硫磺，纯度98.5%以上，用于化肥生产、化工行业、农业。袋装或散装供应，SGS认证。",
+      "tr": "Yüksek saflıkta granül kükürt, saflık %98.5 ve üzeri. Gübre üretimi, kimya endüstrisi ve tarımda kullanılır. Çuval veya dökme. SGS sertifikalı."
+    },
+    "price": "Contact for pricing",
+    "category": "sulfur",
+    "image": "https://images.unsplash.com/photo-1628177142898-93e36e4e3a50?w=800&q=80",
+    "createdAt": "2024-01-20T08:00:00Z"
+  },
+  {
+    "id": "prod-004",
+    "name": {
+      "en": "Wheat (Grade 1, 2, 3)",
+      "ru": "Пшеница (1, 2, 3 класс)",
+      "zh": "小麦（1、2、3级）",
+      "tr": "Buğday (1., 2., 3. Sınıf)"
+    },
+    "description": {
+      "en": "Export-grade wheat, grades 1-3. Protein content 11-14%. Moisture max 14%. Phytosanitary certificate, quality certificate. FOB Novorossiysk or Chinese ports.",
+      "ru": "Экспортная пшеница 1-3 класса. Содержание протеина 11-14%. Влажность не более 14%. Фитосанитарный сертификат, сертификат качества. FOB Новороссийск.",
+      "zh": "出口级小麦，1-3级。蛋白质含量11-14%，水分最高14%。植物检疫证书、品质证书。FOB新罗西斯克或中国港口。",
+      "tr": "İhracat kalitesi buğday, 1-3. sınıf. Protein içeriği %11-14. Nem maks. %14. Fitosaniter sertifika, kalite sertifikası. FOB Novorossiysk."
+    },
+    "price": "Contact for pricing",
+    "category": "agricultural",
+    "image": "https://images.unsplash.com/photo-1574323347407-f5e1ad6d020b?w=800&q=80",
+    "createdAt": "2024-02-01T08:00:00Z"
+  },
+  {
+    "id": "prod-005",
+    "name": {
+      "en": "Industrial Textile Machinery",
+      "ru": "Промышленное текстильное оборудование",
+      "zh": "工业纺织机械",
+      "tr": "Endüstriyel Tekstil Makineleri"
+    },
+    "description": {
+      "en": "Wide range of industrial textile machinery: weaving looms, spinning machines, knitting machines. New and refurbished units available. Full technical documentation. After-sales support.",
+      "ru": "Широкий ассортимент промышленного текстильного оборудования: ткацкие станки, прядильные машины, вязальные машины. Новые и восстановленные агрегаты. Полная техническая документация.",
+      "zh": "各类工业纺织机械：织机、纺纱机、针织机。全新及翻新设备均有供应。提供完整技术文件，并提供售后支持。",
+      "tr": "Geniş yelpazede endüstriyel tekstil makineleri: dokuma tezgahları, iplik makineleri, örme makineleri. Yeni ve yenilenmiş üniteler mevcuttur. Tam teknik dokümantasyon."
+    },
+    "price": "Contact for pricing",
+    "category": "machinery",
+    "image": "https://images.unsplash.com/photo-1565043589221-1a6fd9ae45c7?w=800&q=80",
+    "createdAt": "2024-02-10T08:00:00Z"
+  },
+  {
+    "id": "prod-006",
+    "name": {
+      "en": "Copper Cathodes (Grade A)",
+      "ru": "Медные катоды (Сорт А)",
+      "zh": "电解铜板 (A级)",
+      "tr": "Bakır Katot (Grade A)"
+    },
+    "description": {
+      "en": "LME Grade A copper cathodes, purity 99.99%. Compliant with BS EN 1978:1998. Available in minimum lots of 25 MT. CIF/FOB delivery. SGS inspection available.",
+      "ru": "Медные катоды марки LME Grade A, чистота 99,99%. Соответствуют BS EN 1978:1998. Минимальная партия 25 МТ. Поставка CIF/FOB. Инспекция SGS.",
+      "zh": "LME A级电解铜板，纯度99.99%，符合BS EN 1978:1998标准。最小批量25吨，CIF/FOB交货，提供SGS检验。",
+      "tr": "LME Grade A bakır katot, saflık %99.99. BS EN 1978:1998 uyumlu. Minimum 25 MT lot. CIF/FOB teslimat. SGS muayene mevcut."
+    },
+    "price": "Contact for pricing",
+    "category": "metallurgy",
+    "image": "https://images.unsplash.com/photo-1504328345606-18bbc8c9d7d1?w=800&q=80",
+    "createdAt": "2024-02-15T08:00:00Z"
+  }
+]

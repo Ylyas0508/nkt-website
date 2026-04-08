@@ -1,0 +1,153 @@
+@import "tailwindcss";
+
+@theme inline {
+  /* Navy colors */
+  --color-navy-900: #0a1628;
+  --color-navy-800: #0f2039;
+  --color-navy-700: #142d4c;
+  --color-navy-600: #1a3a5c;
+  --color-navy-500: #1e4a74;
+
+  /* Teal colors */
+  --color-teal-600: #0d9488;
+  --color-teal-500: #14b8a6;
+  --color-teal-400: #2dd4bf;
+  --color-teal-300: #5eead4;
+
+  /* Gold colors */
+  --color-gold-600: #b5893a;
+  --color-gold-500: #cd9e66;
+  --color-gold-400: #d4af7a;
+  --color-gold-300: #e0c99a;
+  --color-gold-200: #f0e0c0;
+
+  /* Fonts */
+  --font-sans: var(--font-inter);
+  --font-display: var(--font-playfair);
+}
+
+:root {
+  --background: #0a1628;
+  --foreground: #f8fafc;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans), Arial, sans-serif;
+  overflow-x: hidden;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #0a1628;
+}
+::-webkit-scrollbar-thumb {
+  background: #cd9e66;
+  border-radius: 3px;
+}
+
+/* WhatsApp pulse animation */
+@keyframes wa-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5); }
+  50% { box-shadow: 0 0 0 12px rgba(37, 211, 102, 0); }
+}
+.wa-pulse { animation: wa-pulse 2s infinite; }
+
+/* Gradient animation for hero */
+@keyframes gradient-shift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+.animated-gradient {
+  background: linear-gradient(-45deg, #0a1628, #142d4c, #0d9488, #0a1628, #1a3a5c);
+  background-size: 400% 400%;
+  animation: gradient-shift 12s ease infinite;
+}
+
+/* Gold underline */
+.gold-underline::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #cd9e66;
+  margin-top: 12px;
+}
+.gold-underline-center::after {
+  content: '';
+  display: block;
+  width: 60px;
+  height: 3px;
+  background: #cd9e66;
+  margin: 12px auto 0;
+}
+
+/* Particle dot */
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(205, 158, 102, 0.3);
+  pointer-events: none;
+}
+
+/* Section separator */
+.section-divider {
+  border: none;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #cd9e66, transparent);
+}
+
+/* Card hover */
+.product-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.product-card:hover {
+  transform: translateY(-8px);
+}
+
+/* Form inputs */
+.form-input {
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
+  color: #f8fafc;
+  border-radius: 6px;
+  padding: 10px 14px;
+  width: 100%;
+  transition: border-color 0.2s;
+  outline: none;
+}
+.form-input:focus {
+  border-color: #cd9e66;
+}
+.form-input::placeholder {
+  color: rgba(248,250,252,0.4);
+}
+
+/* Admin styles */
+.admin-input {
+  background: #f9fafb;
+  border: 1px solid #e5e7eb;
+  border-radius: 6px;
+  padding: 8px 12px;
+  width: 100%;
+  color: #111827;
+  outline: none;
+  transition: border-color 0.2s;
+}
+.admin-input:focus {
+  border-color: #14b8a6;
+  box-shadow: 0 0 0 3px rgba(20,184,166,0.1);
+}

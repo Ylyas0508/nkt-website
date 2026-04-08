@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(npx create-next-app@latest . --typescript --tailwind --app --eslint --use-npm --import-alias \"@/*\" --no-git)",
+      "Bash(npm install:*)",
+      "Bash(ls /c/Users/user/Desktop/claudecode/1/*.config*)",
+      "Bash(npm run:*)",
+      "mcp__Claude_Preview__preview_start",
+      "Bash(grep -iE \"\\\\.\\(png|jpg|jpeg|svg|webp\\)$\")"
+    ]
+  }
+}
