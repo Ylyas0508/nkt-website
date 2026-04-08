@@ -68,14 +68,6 @@ export default function AboutSection() {
                   className="w-full h-72 object-cover"
                 />
               </div>
-              <div
-                className="absolute -bottom-6 -left-6 rounded-xl p-4 shadow-xl"
-                style={{ background: "#0a1628", border: "1px solid rgba(205,158,102,0.3)" }}
-              >
-                <p className="text-xs text-white/50 mb-1">Registration</p>
-                <p className="text-sm text-white font-mono">91450100MAEHB1HX9L</p>
-                <p className="text-xs text-white/40 mt-1">Guangxi, China</p>
-              </div>
               <div className="grid grid-cols-2 gap-4 mt-10">
                 {stats.map(({ value, suffix, labelKey }, i) => (
                   <motion.div

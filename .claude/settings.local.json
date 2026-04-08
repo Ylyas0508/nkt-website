@@ -6,7 +6,10 @@
       "Bash(ls /c/Users/user/Desktop/claudecode/1/*.config*)",
       "Bash(npm run:*)",
       "mcp__Claude_Preview__preview_start",
-      "Bash(grep -iE \"\\\\.\\(png|jpg|jpeg|svg|webp\\)$\")"
+      "Bash(grep -iE \"\\\\.\\(png|jpg|jpeg|svg|webp\\)$\")",
+      "Bash(xargs grep:*)",
+      "Bash(npm show:*)",
+      "Bash(python3 -m json.tool)"
     ]
   }
 }

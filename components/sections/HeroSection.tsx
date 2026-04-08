@@ -3,7 +3,7 @@
 import { useEffect, useRef } from "react";
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
-import { ArrowDown, Globe, TrendingUp, Package } from "lucide-react";
+import { Globe, TrendingUp, Package } from "lucide-react";
 
 const PARTICLES = Array.from({ length: 18 }, (_, i) => ({
   id: i,
@@ -170,15 +170,6 @@ export default function HeroSection() {
         </motion.div>
       </div>
 
-      {/* Scroll indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-1"
-        animate={{ y: [0, 8, 0] }}
-        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
-      >
-        <div className="w-px h-8 bg-gradient-to-b from-transparent to-gold-500" style={{ background: "linear-gradient(to bottom, transparent, #cd9e66)" }} />
-        <ArrowDown size={14} style={{ color: "#cd9e66" }} />
-      </motion.div>
     </section>
   );
 }
