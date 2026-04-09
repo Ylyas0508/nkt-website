@@ -15,7 +15,7 @@ export default async function BlogAdminPage() {
         <a
           href="/admin/blog/new"
           className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:brightness-110"
-          style={{ background: "linear-gradient(135deg, #14b8a6, #2dd4bf)", color: "#0a1628" }}
+          style={{ background: "linear-gradient(135deg, #14b8a6, #2dd4bf)", color: "#0f2040" }}
         >
           <Plus size={16} />
           New Post
@@ -27,7 +27,7 @@ export default async function BlogAdminPage() {
           <div
             key={post.id}
             className="flex items-center gap-4 p-4 rounded-xl"
-            style={{ background: i % 2 === 0 ? "#0a1628" : "#0c1b30", border: "1px solid rgba(255,255,255,0.05)" }}
+            style={{ background: i % 2 === 0 ? "#0f2040" : "#122444", border: "1px solid rgba(255,255,255,0.05)" }}
           >
             <img src={post.image} alt="" className="w-14 h-14 rounded-lg object-cover shrink-0" />
             <div className="flex-1 min-w-0">

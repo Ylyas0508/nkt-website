@@ -19,7 +19,7 @@ export const CATEGORIES = [
     icon: "Fuel",
     color: "#cd9e66",
     image:
-      "https://images.unsplash.com/photo-1518709766631-a6a7f45921c3?w=800&q=80",
+      "https://images.unsplash.com/photo-1611273426858-450d8e3c9fce?w=800&q=80",
   },
   {
     id: "chemicals",
@@ -51,7 +51,7 @@ export const CATEGORIES = [
     icon: "Shirt",
     color: "#a78bfa",
     image:
-      "https://images.unsplash.com/photo-1558171813-01a14e725529?w=800&q=80",
+      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?w=800&q=80",
   },
   {
     id: "automotive",

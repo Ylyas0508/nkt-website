@@ -2,11 +2,11 @@
 
 @theme inline {
   /* Navy colors */
-  --color-navy-900: #0a1628;
-  --color-navy-800: #0f2039;
-  --color-navy-700: #142d4c;
-  --color-navy-600: #1a3a5c;
-  --color-navy-500: #1e4a74;
+  --color-navy-900: #0f2040;
+  --color-navy-800: #142848;
+  --color-navy-700: #1a3558;
+  --color-navy-600: #204268;
+  --color-navy-500: #265080;
 
   /* Teal colors */
   --color-teal-600: #0d9488;
@@ -27,7 +27,7 @@
 }
 
 :root {
-  --background: #0a1628;
+  --background: #0f2040;
   --foreground: #f8fafc;
 }
 
@@ -51,7 +51,7 @@ body {
   width: 6px;
 }
 ::-webkit-scrollbar-track {
-  background: #0a1628;
+  background: #0f2040;
 }
 ::-webkit-scrollbar-thumb {
   background: #cd9e66;

@@ -93,7 +93,7 @@ export default function Navbar() {
                   exit={{ opacity: 0, y: -8, scale: 0.95 }}
                   transition={{ duration: 0.15 }}
                   className="absolute right-0 top-full mt-2 rounded-xl shadow-2xl overflow-hidden w-40"
-                  style={{ background: "#0f2039", border: "1px solid rgba(205,158,102,0.2)" }}
+                  style={{ background: "#142848", border: "1px solid rgba(205,158,102,0.2)" }}
                 >
                   {LANGS.map((lang) => (
                     <button

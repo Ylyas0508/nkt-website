@@ -122,3 +122,83 @@ export async function deleteBlogPost(id: string): Promise<boolean> {
   await setData("blog", "blog.json", filtered);
   return true;
 }
+
+// --- Category Overrides ---
+
+export interface CategoryOverride {
+  id: string;
+  image: string;
+  color: string;
+  name?: string;
+  isCustom?: boolean;
+}
+
+export async function getCategoryOverrides(): Promise<CategoryOverride[]> {
+  return getData<CategoryOverride>("categoryOverrides", "categoryOverrides.json");
+}
+
+export async function upsertCategoryOverride(id: string, data: Partial<CategoryOverride>): Promise<void> {
+  const overrides = await getCategoryOverrides();
+  const idx = overrides.findIndex((o) => o.id === id);
+  if (idx >= 0) {
+    overrides[idx] = { ...overrides[idx], ...data };
+  } else {
+    overrides.push({ id, image: "", color: "#cd9e66", ...data });
+  }
+  await setData("categoryOverrides", "categoryOverrides.json", overrides);
+}
+
+export async function createCustomCategory(data: Omit<CategoryOverride, "id">): Promise<CategoryOverride> {
+  const overrides = await getCategoryOverrides();
+  const cat: CategoryOverride = {
+    ...data,
+    id: `cat-${crypto.randomUUID().slice(0, 8)}`,
+    isCustom: true,
+  };
+  await setData("categoryOverrides", "categoryOverrides.json", [cat, ...overrides]);
+  return cat;
+}
+
+export async function deleteCustomCategory(id: string): Promise<boolean> {
+  const overrides = await getCategoryOverrides();
+  const filtered = overrides.filter((o) => o.id !== id);
+  if (filtered.length === overrides.length) return false;
+  await setData("categoryOverrides", "categoryOverrides.json", filtered);
+  return true;
+}
+
+// --- About Stats ---
+
+export interface AboutStats {
+  years: number;
+  countries: number;
+  deals: number;
+}
+
+const DEFAULT_STATS: AboutStats = { years: 5, countries: 50, deals: 500 };
+
+async function getSingleValue<T>(key: string): Promise<T | null> {
+  if (useKV) {
+    const { kv } = await import("@vercel/kv");
+    return kv.get<T>(key);
+  }
+  return null;
+}
+
+async function setSingleValue<T>(key: string, value: T): Promise<void> {
+  if (useKV) {
+    const { kv } = await import("@vercel/kv");
+    await kv.set(key, value);
+  }
+}
+
+export async function getAboutStats(): Promise<AboutStats> {
+  return (await getSingleValue<AboutStats>("aboutStats")) ?? DEFAULT_STATS;
+}
+
+export async function updateAboutStats(data: Partial<AboutStats>): Promise<AboutStats> {
+  const current = await getAboutStats();
+  const updated = { ...current, ...data };
+  await setSingleValue("aboutStats", updated);
+  return updated;
+}

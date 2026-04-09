@@ -28,16 +28,21 @@ function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
 
 export default function AboutSection() {
   const { t } = useTranslation();
+  const [statsData, setStatsData] = useState({ years: 5, countries: 50, deals: 500 });
+
+  useEffect(() => {
+    fetch("/api/settings").then(r => r.json()).then(setStatsData).catch(() => {});
+  }, []);
 
   const stats = [
-    { value: 10, suffix: "+", labelKey: "about.stat1.label" },
-    { value: 50, suffix: "+", labelKey: "about.stat2.label" },
-    { value: 500, suffix: "+", labelKey: "about.stat3.label" },
+    { value: statsData.years, suffix: "+", labelKey: "about.stat1.label" },
+    { value: statsData.countries, suffix: "+", labelKey: "about.stat2.label" },
+    { value: statsData.deals, suffix: "+", labelKey: "about.stat3.label" },
     { value: 9, suffix: "", labelKey: "about.stat4.label" },
   ];
 
   return (
-    <section id="about" className="py-24" style={{ background: "#0d1f35" }}>
+    <section id="about" className="py-24" style={{ background: "#142848" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-start">
           {/* Left: Text */}
@@ -52,7 +57,7 @@ export default function AboutSection() {
             <a
               href="#contact"
               className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all hover:brightness-110 mt-8"
-              style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0a1628" }}
+              style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0f2040" }}
             >
               {t("nav.contact")} →
             </a>

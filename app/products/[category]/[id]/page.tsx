@@ -32,7 +32,7 @@ export default function ProductDetailPage() {
 
   if (loading) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: "#0a1628" }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#0f2040" }}>
         <div className="w-10 h-10 border-2 border-t-transparent rounded-full animate-spin" style={{ borderColor: "#cd9e66", borderTopColor: "transparent" }} />
       </div>
     );
@@ -40,7 +40,7 @@ export default function ProductDetailPage() {
 
   if (!product) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: "#0a1628" }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#0f2040" }}>
         <div className="text-center">
           <p className="text-white/50 text-lg mb-4">Product not found.</p>
           <a href={`/products/${categoryId}`} className="text-sm" style={{ color: "#cd9e66" }}>← Back to category</a>
@@ -56,7 +56,7 @@ export default function ProductDetailPage() {
   const bullets = description.split(/\.\s+|\n/).filter((s) => s.trim().length > 5);
 
   return (
-    <div style={{ background: "#0a1628", minHeight: "100vh" }}>
+    <div style={{ background: "#0f2040", minHeight: "100vh" }}>
       {/* Slim top banner */}
       <div className="relative h-44 overflow-hidden">
         <img
@@ -150,7 +150,7 @@ export default function ProductDetailPage() {
               <a
                 href="/#contact"
                 className="flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl font-semibold text-sm transition-all hover:brightness-110"
-                style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0a1628" }}
+                style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0f2040" }}
               >
                 <Mail size={16} />
                 Send Enquiry
@@ -158,7 +158,7 @@ export default function ProductDetailPage() {
             </div>
 
             {/* Contact card */}
-            <div className="rounded-xl p-4" style={{ background: "#0d1f35", border: "1px solid rgba(255,255,255,0.07)" }}>
+            <div className="rounded-xl p-4" style={{ background: "#142848", border: "1px solid rgba(255,255,255,0.07)" }}>
               <p className="text-xs text-white/40 uppercase tracking-wider mb-3">Direct Contact</p>
               <div className="flex flex-col gap-2 text-sm">
                 <div className="flex items-center gap-2 text-white/60">

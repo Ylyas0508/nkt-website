@@ -27,7 +27,7 @@ export default async function AdminDashboard() {
             key={label}
             href={href}
             className="rounded-xl p-5 transition-all hover:-translate-y-1"
-            style={{ background: "#0d1f35", border: "1px solid rgba(255,255,255,0.07)" }}
+            style={{ background: "#142848", border: "1px solid rgba(255,255,255,0.07)" }}
           >
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm text-white/50">{label}</p>
@@ -42,7 +42,7 @@ export default async function AdminDashboard() {
 
       {/* Recent products */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-        <div className="rounded-xl p-6" style={{ background: "#0d1f35", border: "1px solid rgba(255,255,255,0.07)" }}>
+        <div className="rounded-xl p-6" style={{ background: "#142848", border: "1px solid rgba(255,255,255,0.07)" }}>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-white font-semibold">Recent Products</h2>
             <a href="/admin/products" className="text-xs" style={{ color: "#cd9e66" }}>View all →</a>
@@ -63,7 +63,7 @@ export default async function AdminDashboard() {
           </div>
         </div>
 
-        <div className="rounded-xl p-6" style={{ background: "#0d1f35", border: "1px solid rgba(255,255,255,0.07)" }}>
+        <div className="rounded-xl p-6" style={{ background: "#142848", border: "1px solid rgba(255,255,255,0.07)" }}>
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-white font-semibold">Recent Blog Posts</h2>
             <a href="/admin/blog" className="text-xs" style={{ color: "#14b8a6" }}>View all →</a>

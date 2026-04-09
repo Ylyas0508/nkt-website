@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "@/lib/i18n";
 import AnimatedSection from "@/components/ui/AnimatedSection";
@@ -14,11 +15,26 @@ const ICON_MAP: Record<string, LucideIcon> = {
   Fuel, FlaskConical, Hammer, Wheat, Shirt, Car, Cog, Atom, Package,
 };
 
+interface Category {
+  id: string;
+  tKey?: string;
+  icon?: string;
+  color: string;
+  image: string;
+  name?: string;
+  isCustom?: boolean;
+}
+
 export default function ProductsSection() {
   const { t } = useTranslation();
+  const [categories, setCategories] = useState<Category[]>(CATEGORIES);
+
+  useEffect(() => {
+    fetch("/api/categories").then(r => r.json()).then(setCategories).catch(() => {});
+  }, []);
 
   return (
-    <section id="products" className="py-24" style={{ background: "#0a1628" }}>
+    <section id="products" className="py-24" style={{ background: "#0f2040" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <AnimatedSection className="text-center mb-14">
           <SectionHeading
@@ -29,8 +45,10 @@ export default function ProductsSection() {
         </AnimatedSection>
 
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-          {CATEGORIES.map((cat, i) => {
-            const Icon = ICON_MAP[cat.icon] || Package;
+          {categories.map((cat, i) => {
+            const Icon = ICON_MAP[cat.icon || "Package"] || Package;
+            const name = cat.isCustom && cat.name ? cat.name : (cat.tKey ? t(`products.${cat.tKey}.name`) : (cat.name || cat.id));
+            const desc = cat.tKey ? t(`products.${cat.tKey}.desc`) : "";
 
             return (
               <motion.div
@@ -48,18 +66,13 @@ export default function ProductsSection() {
                 <div className="relative h-52 overflow-hidden">
                   <img
                     src={cat.image}
-                    alt={t(`products.${cat.tKey}.name`)}
+                    alt={name}
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
                   />
-                  {/* Gradient overlay */}
                   <div
                     className="absolute inset-0 transition-opacity duration-300"
-                    style={{
-                      background:
-                        "linear-gradient(to top, rgba(10,22,40,0.95) 30%, rgba(10,22,40,0.4) 100%)",
-                    }}
+                    style={{ background: "linear-gradient(to top, rgba(15,32,64,0.95) 30%, rgba(15,32,64,0.4) 100%)" }}
                   />
-                  {/* Icon */}
                   <div
                     className="absolute top-4 left-4 w-10 h-10 rounded-xl flex items-center justify-center"
                     style={{ background: `${cat.color}25`, border: `1px solid ${cat.color}50` }}
@@ -69,17 +82,13 @@ export default function ProductsSection() {
                 </div>
 
                 {/* Content */}
-                <div
-                  className="p-5"
-                  style={{ background: "#0d1f35" }}
-                >
-                  <h3 className="text-white font-semibold text-base mb-2 group-hover:text-gold-400 transition-colors"
-                    style={{ color: "white" }}>
-                    {t(`products.${cat.tKey}.name`)}
+                <div className="p-5" style={{ background: "#142848" }}>
+                  <h3 className="text-white font-semibold text-base mb-2 group-hover:text-gold-400 transition-colors">
+                    {name}
                   </h3>
-                  <p className="text-white/50 text-sm leading-relaxed line-clamp-3">
-                    {t(`products.${cat.tKey}.desc`)}
-                  </p>
+                  {desc && (
+                    <p className="text-white/50 text-sm leading-relaxed line-clamp-3">{desc}</p>
+                  )}
                   <div className="mt-4 pt-4" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                     <a
                       href={`/products/${cat.id}`}
@@ -91,7 +100,6 @@ export default function ProductsSection() {
                   </div>
                 </div>
 
-                {/* Gold border on hover */}
                 <div
                   className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                   style={{ border: `1px solid ${cat.color}40` }}

@@ -29,14 +29,14 @@ export default function CategoryPage() {
 
   if (!category) {
     return (
-      <div className="min-h-screen flex items-center justify-center" style={{ background: "#0a1628" }}>
+      <div className="min-h-screen flex items-center justify-center" style={{ background: "#0f2040" }}>
         <p className="text-white/50">Category not found.</p>
       </div>
     );
   }
 
   return (
-    <div style={{ background: "#0a1628", minHeight: "100vh" }}>
+    <div style={{ background: "#0f2040", minHeight: "100vh" }}>
       {/* Category Hero Banner */}
       <div className="relative h-64 md:h-80 overflow-hidden">
         <img
@@ -81,7 +81,7 @@ export default function CategoryPage() {
         {loading ? (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {[1, 2, 3].map((i) => (
-              <div key={i} className="rounded-2xl overflow-hidden animate-pulse" style={{ background: "#0d1f35", height: 340 }} />
+              <div key={i} className="rounded-2xl overflow-hidden animate-pulse" style={{ background: "#142848", height: 340 }} />
             ))}
           </div>
         ) : products.length === 0 ? (
@@ -109,7 +109,7 @@ export default function CategoryPage() {
                 transition={{ delay: i * 0.08, duration: 0.5 }}
                 whileHover={{ y: -6 }}
                 className="rounded-2xl overflow-hidden group block"
-                style={{ background: "#0d1f35", border: "1px solid rgba(255,255,255,0.07)", textDecoration: "none" }}
+                style={{ background: "#142848", border: "1px solid rgba(255,255,255,0.07)", textDecoration: "none" }}
               >
                 {/* Product image */}
                 <div className="relative h-52 overflow-hidden">
@@ -150,14 +150,14 @@ export default function CategoryPage() {
         )}
 
         {/* Contact CTA */}
-        <div className="mt-16 rounded-2xl p-8 text-center" style={{ background: "#0d1f35", border: "1px solid rgba(205,158,102,0.2)" }}>
+        <div className="mt-16 rounded-2xl p-8 text-center" style={{ background: "#142848", border: "1px solid rgba(205,158,102,0.2)" }}>
           <h3 className="text-white font-bold text-xl mb-2">Don't see what you need?</h3>
           <p className="text-white/50 text-sm mb-6">We can source any product on request. Contact us directly for a custom quotation.</p>
           <div className="flex flex-col sm:flex-row gap-3 justify-center">
             <a
               href="/#contact"
               className="inline-flex items-center justify-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold transition-all hover:brightness-110"
-              style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0a1628" }}
+              style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0f2040" }}
             >
               Send Enquiry
             </a>

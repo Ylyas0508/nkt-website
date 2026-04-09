@@ -25,7 +25,7 @@ export default function ContactSection() {
   };
 
   return (
-    <section id="contact" className="py-24" style={{ background: "#0a1628" }}>
+    <section id="contact" className="py-24" style={{ background: "#0f2040" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <AnimatedSection className="text-center mb-14">
           <SectionHeading
@@ -40,7 +40,7 @@ export default function ContactSection() {
           <AnimatedSection variant="fade-left" className="lg:col-span-3">
             <div
               className="rounded-2xl p-8"
-              style={{ background: "#0d1f35", border: "1px solid rgba(205,158,102,0.15)" }}
+              style={{ background: "#142848", border: "1px solid rgba(205,158,102,0.15)" }}
             >
               {status === "done" ? (
                 <div className="flex flex-col items-center justify-center py-12 gap-4">
@@ -107,7 +107,7 @@ export default function ContactSection() {
                     type="submit"
                     disabled={status === "sending"}
                     className="w-full flex items-center justify-center gap-2 py-3.5 rounded-xl font-semibold text-sm transition-all hover:brightness-110"
-                    style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0a1628" }}
+                    style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0f2040" }}
                   >
                     <Send size={15} />
                     {status === "sending" ? t("contact.form.sending") : t("contact.form.submit")}
@@ -136,7 +136,7 @@ export default function ContactSection() {
             {/* Contact info */}
             <div
               className="rounded-2xl p-6 space-y-4"
-              style={{ background: "#0d1f35", border: "1px solid rgba(205,158,102,0.15)" }}
+              style={{ background: "#142848", border: "1px solid rgba(205,158,102,0.15)" }}
             >
               <div className="flex items-start gap-3">
                 <div className="w-8 h-8 rounded-lg flex items-center justify-center shrink-0" style={{ background: "rgba(205,158,102,0.15)" }}>

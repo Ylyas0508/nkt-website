@@ -35,7 +35,7 @@ export default function BlogSection() {
   };
 
   return (
-    <section id="blog" className="py-24" style={{ background: "#0d1f35" }}>
+    <section id="blog" className="py-24" style={{ background: "#142848" }}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <AnimatedSection className="text-center mb-14">
           <SectionHeading
@@ -67,7 +67,7 @@ export default function BlogSection() {
                   transition={{ delay: i * 0.1, duration: 0.5 }}
                   whileHover={{ y: -6 }}
                   className="rounded-2xl overflow-hidden group cursor-pointer flex flex-col"
-                  style={{ background: "#0a1628", border: "1px solid rgba(255,255,255,0.07)" }}
+                  style={{ background: "#0f2040", border: "1px solid rgba(255,255,255,0.07)" }}
                 >
                   <div className="relative h-48 overflow-hidden">
                     <img

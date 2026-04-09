@@ -130,7 +130,7 @@ export default function HeroSection() {
             className="inline-flex items-center justify-center gap-2 px-7 py-3.5 rounded-xl font-semibold text-sm transition-all hover:brightness-110 hover:scale-105"
             style={{
               background: "linear-gradient(135deg, #cd9e66, #d4af7a)",
-              color: "#0a1628",
+              color: "#0f2040",
             }}
           >
             <Package size={16} />

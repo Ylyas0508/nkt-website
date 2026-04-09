@@ -15,7 +15,7 @@ export default async function ProductsAdminPage() {
         <a
           href="/admin/products/new"
           className="flex items-center gap-2 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all hover:brightness-110"
-          style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0a1628" }}
+          style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0f2040" }}
         >
           <Plus size={16} />
           Add Product
@@ -25,7 +25,7 @@ export default async function ProductsAdminPage() {
       <div className="rounded-xl overflow-hidden" style={{ border: "1px solid rgba(255,255,255,0.07)" }}>
         <table className="w-full">
           <thead>
-            <tr style={{ background: "#0d1f35", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
+            <tr style={{ background: "#142848", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
               <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Product</th>
               <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40 hidden sm:table-cell">Category</th>
               <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40 hidden md:table-cell">Price</th>
@@ -37,7 +37,7 @@ export default async function ProductsAdminPage() {
               <tr
                 key={p.id}
                 style={{
-                  background: i % 2 === 0 ? "#0a1628" : "#0c1b30",
+                  background: i % 2 === 0 ? "#0f2040" : "#122444",
                   borderBottom: "1px solid rgba(255,255,255,0.05)",
                 }}
               >
