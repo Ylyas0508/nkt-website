@@ -173,9 +173,15 @@ export interface AboutStats {
   years: number;
   countries: number;
   deals: number;
+  aboutImage?: string;
 }
 
-const DEFAULT_STATS: AboutStats = { years: 5, countries: 50, deals: 500 };
+const DEFAULT_STATS: AboutStats = {
+  years: 5,
+  countries: 50,
+  deals: 500,
+  aboutImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+};
 
 async function getSingleValue<T>(key: string): Promise<T | null> {
   if (useKV) {

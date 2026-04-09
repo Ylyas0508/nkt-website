@@ -116,17 +116,6 @@ export default function BlogSection() {
               ))}
         </div>
 
-        {posts.length > 0 && (
-          <AnimatedSection className="text-center mt-10" delay={0.3}>
-            <a
-              href="/blog"
-              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border transition-all hover:bg-white/5"
-              style={{ borderColor: "rgba(205,158,102,0.4)", color: "#cd9e66" }}
-            >
-              {t("blog.view_all")} <ArrowRight size={14} />
-            </a>
-          </AnimatedSection>
-        )}
       </div>
     </section>
   );

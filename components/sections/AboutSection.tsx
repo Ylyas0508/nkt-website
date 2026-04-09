@@ -28,10 +28,15 @@ function CountUp({ target, suffix = "" }: { target: number; suffix?: string }) {
 
 export default function AboutSection() {
   const { t } = useTranslation();
-  const [statsData, setStatsData] = useState({ years: 5, countries: 50, deals: 500 });
+  const [statsData, setStatsData] = useState({
+    years: 5,
+    countries: 50,
+    deals: 500,
+    aboutImage: "https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80",
+  });
 
   useEffect(() => {
-    fetch("/api/settings").then(r => r.json()).then(setStatsData).catch(() => {});
+    fetch("/api/settings").then(r => r.json()).then(data => setStatsData(prev => ({ ...prev, ...data }))).catch(() => {});
   }, []);
 
   const stats = [
@@ -68,7 +73,7 @@ export default function AboutSection() {
             <div className="relative">
               <div className="rounded-2xl overflow-hidden" style={{ border: "1px solid rgba(205,158,102,0.2)" }}>
                 <img
-                  src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?w=800&q=80"
+                  src={statsData.aboutImage}
                   alt="Global trade operations"
                   className="w-full h-72 object-cover"
                 />

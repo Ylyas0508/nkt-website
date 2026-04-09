@@ -29,7 +29,7 @@ const CATEGORY_LABELS: Record<string, string> = {
 export default function CategoriesAdminPage() {
   const router = useRouter();
   const [categories, setCategories] = useState<Category[]>([]);
-  const [editing, setEditing] = useState<Record<string, { image: string; color: string }>>({});
+  const [editing, setEditing] = useState<Record<string, { image: string; color: string; name: string }>>({});
   const [saving, setSaving] = useState<string | null>(null);
   const [showAdd, setShowAdd] = useState(false);
   const [newCat, setNewCat] = useState({ name: "", image: "", color: "#cd9e66" });
@@ -40,7 +40,8 @@ export default function CategoriesAdminPage() {
   }, []);
 
   const startEdit = (cat: Category) => {
-    setEditing(prev => ({ ...prev, [cat.id]: { image: cat.image, color: cat.color } }));
+    const label = cat.name || CATEGORY_LABELS[cat.id] || cat.id;
+    setEditing(prev => ({ ...prev, [cat.id]: { image: cat.image, color: cat.color, name: label } }));
   };
 
   const saveEdit = async (id: string) => {
@@ -83,7 +84,7 @@ export default function CategoriesAdminPage() {
       <div className="flex items-center justify-between mb-8">
         <div>
           <h1 className="text-2xl font-bold text-white">Categories</h1>
-          <p className="text-white/50 text-sm mt-1">Edit category images and colors</p>
+          <p className="text-white/50 text-sm mt-1">Edit category names, images and colors</p>
         </div>
         <button
           onClick={() => setShowAdd(true)}
@@ -169,6 +170,14 @@ export default function CategoriesAdminPage() {
                   </div>
                   {isEditing ? (
                     <div className="flex gap-3 flex-wrap">
+                      <div className="min-w-36">
+                        <label className="block text-xs text-white/40 mb-1">Name</label>
+                        <input
+                          value={editing[cat.id].name}
+                          onChange={e => setEditing(p => ({ ...p, [cat.id]: { ...p[cat.id], name: e.target.value } }))}
+                          className="w-full px-3 py-1.5 rounded-lg text-sm text-white bg-white/5 border border-white/10 focus:outline-none focus:border-yellow-500/50"
+                        />
+                      </div>
                       <div className="flex-1 min-w-48">
                         <label className="block text-xs text-white/40 mb-1">Image URL</label>
                         <input
