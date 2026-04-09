@@ -26,26 +26,22 @@ export default function HeroSection() {
       ref={ref}
       className="relative min-h-screen flex items-center justify-center overflow-hidden animated-gradient"
     >
-      {/* Parallax background photo - blurred industrial image */}
-      <motion.div
-        style={{ y }}
-        className="absolute inset-0 z-0"
-      >
-        <div
-          className="absolute inset-0"
-          style={{
-            backgroundImage:
-              "url(https://images.unsplash.com/photo-1590859808308-3d2d9c515b1a?w=1920&q=80)",
-            backgroundSize: "cover",
-            backgroundPosition: "center",
-            filter: "blur(2px) brightness(0.65)",
-            transform: "scale(1.05)",
-          }}
-        />
-      </motion.div>
+      {/* Video background */}
+      <div className="absolute inset-0 z-0 overflow-hidden">
+        <video
+          autoPlay
+          muted
+          loop
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ filter: "brightness(0.55)" }}
+        >
+          <source src="/hero-bg.mp4" type="video/mp4" />
+        </video>
+      </div>
 
       {/* Dark gradient overlay */}
-      <div className="absolute inset-0 z-0" style={{ background: "linear-gradient(to bottom, rgba(10,22,40,0.55) 0%, rgba(10,22,40,0.75) 60%, rgba(10,22,40,0.95) 100%)" }} />
+      <div className="absolute inset-0 z-0" style={{ background: "linear-gradient(to bottom, rgba(15,32,64,0.45) 0%, rgba(15,32,64,0.65) 60%, rgba(15,32,64,0.92) 100%)" }} />
 
       {/* Grid pattern */}
       <div

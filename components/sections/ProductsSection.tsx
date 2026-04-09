@@ -71,7 +71,7 @@ export default function ProductsSection() {
                   />
                   <div
                     className="absolute inset-0 transition-opacity duration-300"
-                    style={{ background: "linear-gradient(to top, rgba(15,32,64,0.95) 30%, rgba(15,32,64,0.4) 100%)" }}
+                    style={{ background: "linear-gradient(to top, rgba(15,32,64,0.5) 0%, transparent 60%)" }}
                   />
                   <div
                     className="absolute top-4 left-4 w-10 h-10 rounded-xl flex items-center justify-center"
