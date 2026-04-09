@@ -129,8 +129,21 @@ export interface CategoryOverride {
   id: string;
   image: string;
   color: string;
-  name?: string;
+  icon?: string;
+  name?: Record<string, string>;
+  description?: Record<string, string>;
   isCustom?: boolean;
+}
+
+export interface ContactMessage {
+  id: string;
+  name: string;
+  email: string;
+  phone?: string;
+  subject?: string;
+  message: string;
+  createdAt: string;
+  read: boolean;
 }
 
 export async function getCategoryOverrides(): Promise<CategoryOverride[]> {
@@ -164,6 +177,40 @@ export async function deleteCustomCategory(id: string): Promise<boolean> {
   const filtered = overrides.filter((o) => o.id !== id);
   if (filtered.length === overrides.length) return false;
   await setData("categoryOverrides", "categoryOverrides.json", filtered);
+  return true;
+}
+
+// --- Contact Messages ---
+
+export async function getContactMessages(): Promise<ContactMessage[]> {
+  return getData<ContactMessage>("messages", "messages.json");
+}
+
+export async function createContactMessage(data: Omit<ContactMessage, "id" | "createdAt" | "read">): Promise<ContactMessage> {
+  const messages = await getContactMessages();
+  const msg: ContactMessage = {
+    ...data,
+    id: crypto.randomUUID(),
+    createdAt: new Date().toISOString(),
+    read: false,
+  };
+  await setData("messages", "messages.json", [msg, ...messages]);
+  return msg;
+}
+
+export async function markMessageRead(id: string): Promise<void> {
+  const messages = await getContactMessages();
+  const idx = messages.findIndex((m) => m.id === id);
+  if (idx === -1) return;
+  messages[idx] = { ...messages[idx], read: true };
+  await setData("messages", "messages.json", messages);
+}
+
+export async function deleteContactMessage(id: string): Promise<boolean> {
+  const messages = await getContactMessages();
+  const filtered = messages.filter((m) => m.id !== id);
+  if (filtered.length === messages.length) return false;
+  await setData("messages", "messages.json", filtered);
   return true;
 }
 

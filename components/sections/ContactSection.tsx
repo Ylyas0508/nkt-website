@@ -13,15 +13,25 @@ export default function ContactSection() {
   const [form, setForm] = useState({ name: "", email: "", phone: "", subject: "", message: "" });
   const [status, setStatus] = useState<"idle" | "sending" | "done">("idle");
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setStatus("sending");
-    // Open mailto as fallback
-    const body = encodeURIComponent(
-      `Name: ${form.name}\nPhone: ${form.phone}\nSubject: ${form.subject}\n\n${form.message}`
-    );
-    window.open(`mailto:${COMPANY.email}?subject=${encodeURIComponent(form.subject || "Inquiry")}&body=${body}`);
-    setTimeout(() => setStatus("done"), 800);
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error();
+      setStatus("done");
+    } catch {
+      // fallback to mailto
+      const body = encodeURIComponent(
+        `Name: ${form.name}\nPhone: ${form.phone}\nSubject: ${form.subject}\n\n${form.message}`
+      );
+      window.open(`mailto:${COMPANY.email}?subject=${encodeURIComponent(form.subject || "Inquiry")}&body=${body}`);
+      setStatus("done");
+    }
   };
 
   return (

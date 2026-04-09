@@ -7,12 +7,14 @@ import AnimatedSection from "@/components/ui/AnimatedSection";
 import SectionHeading from "@/components/ui/SectionHeading";
 import { CATEGORIES } from "@/lib/constants";
 import {
-  Fuel, FlaskConical, Hammer, Wheat, Shirt, Car, Cog, Atom, Package
+  Fuel, FlaskConical, Hammer, Wheat, Shirt, Car, Cog, Atom, Package,
+  Globe, Truck, Zap, Factory, Layers
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
 
 const ICON_MAP: Record<string, LucideIcon> = {
   Fuel, FlaskConical, Hammer, Wheat, Shirt, Car, Cog, Atom, Package,
+  Globe, Truck, Zap, Factory, Layers,
 };
 
 interface Category {
@@ -21,12 +23,13 @@ interface Category {
   icon?: string;
   color: string;
   image: string;
-  name?: string;
+  name?: string | Record<string, string>;
+  description?: string | Record<string, string>;
   isCustom?: boolean;
 }
 
 export default function ProductsSection() {
-  const { t } = useTranslation();
+  const { t, locale } = useTranslation();
   const [categories, setCategories] = useState<Category[]>(CATEGORIES);
 
   useEffect(() => {
@@ -47,8 +50,12 @@ export default function ProductsSection() {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
           {categories.map((cat, i) => {
             const Icon = ICON_MAP[cat.icon || "Package"] || Package;
-            const name = cat.isCustom && cat.name ? cat.name : (cat.tKey ? t(`products.${cat.tKey}.name`) : (cat.name || cat.id));
-            const desc = cat.tKey ? t(`products.${cat.tKey}.desc`) : "";
+            const name = (cat.name && typeof cat.name === "object")
+              ? ((cat.name as Record<string, string>)[locale] || (cat.name as Record<string, string>).en || cat.id)
+              : (cat.tKey ? t(`products.${cat.tKey}.name`) : (cat.name as string || cat.id));
+            const desc = (cat.description && typeof cat.description === "object")
+              ? ((cat.description as Record<string, string>)[locale] || (cat.description as Record<string, string>).en || "")
+              : (cat.tKey ? t(`products.${cat.tKey}.desc`) : "");
 
             return (
               <motion.div

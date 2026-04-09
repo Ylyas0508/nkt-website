@@ -1,16 +1,17 @@
-import { getProducts } from "@/lib/data";
-import { getBlogPosts } from "@/lib/data";
-import { Package, Newspaper, TrendingUp, Globe } from "lucide-react";
+import { getProducts, getBlogPosts, getContactMessages } from "@/lib/data";
+import { Package, Newspaper, Globe, Inbox } from "lucide-react";
 
 export default async function AdminDashboard() {
   const products = await getProducts();
   const posts = await getBlogPosts();
+  const messages = await getContactMessages();
+  const unread = messages.filter((m) => !m.read).length;
 
   const stats = [
-    { label: "Total Products", value: products.length, icon: Package, color: "#cd9e66", href: "/admin/products" },
-    { label: "Blog Posts", value: posts.length, icon: Newspaper, color: "#14b8a6", href: "/admin/blog" },
-    { label: "Product Categories", value: 9, icon: TrendingUp, color: "#60a5fa", href: "/admin/products" },
-    { label: "Languages", value: 4, icon: Globe, color: "#a78bfa", href: "#" },
+    { label: "Total Products", value: products.length, icon: Package, color: "#cd9e66", href: "/admin/products", badge: undefined as number | undefined },
+    { label: "Blog Posts", value: posts.length, icon: Newspaper, color: "#14b8a6", href: "/admin/blog", badge: undefined as number | undefined },
+    { label: "Messages", value: messages.length, icon: Inbox, color: "#60a5fa", href: "/admin/messages", badge: unread > 0 ? unread : undefined },
+    { label: "Languages", value: 4, icon: Globe, color: "#a78bfa", href: "#", badge: undefined as number | undefined },
   ];
 
   return (
@@ -22,7 +23,7 @@ export default async function AdminDashboard() {
 
       {/* Stats */}
       <div className="grid grid-cols-1 sm:grid-cols-2 xl:grid-cols-4 gap-4 mb-10">
-        {stats.map(({ label, value, icon: Icon, color, href }) => (
+        {stats.map(({ label, value, icon: Icon, color, href, badge }) => (
           <a
             key={label}
             href={href}
@@ -36,6 +37,9 @@ export default async function AdminDashboard() {
               </div>
             </div>
             <p className="text-3xl font-bold text-white">{value}</p>
+            {badge !== undefined && (
+              <p className="text-xs mt-1 font-medium" style={{ color: "#cd9e66" }}>{badge} unread</p>
+            )}
           </a>
         ))}
       </div>
