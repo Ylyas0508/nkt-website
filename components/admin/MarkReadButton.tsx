@@ -15,7 +15,7 @@ export default function MarkReadButton({ id }: { id: string }) {
     <button
       onClick={handle}
       className="p-1.5 rounded-lg transition-colors hover:bg-white/10 text-white/40 hover:text-white"
-      title="Mark as read"
+      title="Отметить как прочитанное"
     >
       <CheckCircle2 size={14} />
     </button>

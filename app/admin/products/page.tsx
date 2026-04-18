@@ -9,8 +9,8 @@ export default async function ProductsAdminPage() {
     <div className="p-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-white">Products</h1>
-          <p className="text-white/50 text-sm mt-1">{products.length} products in catalog</p>
+          <h1 className="text-2xl font-bold text-white">Товары</h1>
+          <p className="text-white/50 text-sm mt-1">{products.length} товаров в каталоге</p>
         </div>
         <a
           href="/admin/products/new"
@@ -18,7 +18,7 @@ export default async function ProductsAdminPage() {
           style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0f2040" }}
         >
           <Plus size={16} />
-          Add Product
+          Добавить товар
         </a>
       </div>
 
@@ -26,10 +26,10 @@ export default async function ProductsAdminPage() {
         <table className="w-full">
           <thead>
             <tr style={{ background: "#142848", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Product</th>
-              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40 hidden sm:table-cell">Category</th>
-              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40 hidden md:table-cell">Price</th>
-              <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Actions</th>
+              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Товар</th>
+              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40 hidden sm:table-cell">Категория</th>
+              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40 hidden md:table-cell">Цена</th>
+              <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Действия</th>
             </tr>
           </thead>
           <tbody>
@@ -74,7 +74,7 @@ export default async function ProductsAdminPage() {
         </table>
         {products.length === 0 && (
           <div className="py-16 text-center text-white/30">
-            <p>No products yet. <a href="/admin/products/new" style={{ color: "#cd9e66" }}>Add one →</a></p>
+            <p>Товаров пока нет. <a href="/admin/products/new" style={{ color: "#cd9e66" }}>Добавить →</a></p>
           </div>
         )}
       </div>

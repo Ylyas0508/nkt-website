@@ -10,7 +10,7 @@ interface Props {
   placeholder?: string;
 }
 
-export default function ImageUpload({ value, onChange, label = "Image", placeholder = "https://..." }: Props) {
+export default function ImageUpload({ value, onChange, label = "Изображение", placeholder = "https://..." }: Props) {
   const [mode, setMode] = useState<"upload" | "url">(value && value.startsWith("http") ? "url" : "upload");
   const [uploading, setUploading] = useState(false);
   const [error, setError] = useState("");
@@ -98,7 +98,7 @@ export default function ImageUpload({ value, onChange, label = "Image", placehol
               color: mode === "upload" ? "#0a1628" : "rgba(255,255,255,0.5)",
             }}
           >
-            <Upload size={10} /> Upload
+            <Upload size={10} /> Загрузить
           </button>
           <button
             type="button"
@@ -109,7 +109,7 @@ export default function ImageUpload({ value, onChange, label = "Image", placehol
               color: mode === "url" ? "#0a1628" : "rgba(255,255,255,0.5)",
             }}
           >
-            <LinkIcon size={10} /> URL
+            <LinkIcon size={10} /> Ссылка
           </button>
         </div>
       </div>
@@ -132,8 +132,8 @@ export default function ImageUpload({ value, onChange, label = "Image", placehol
           ) : (
             <Upload size={20} className="mb-2" style={{ color: "#cd9e66" }} />
           )}
-          <p className="text-sm text-white/70">{uploading ? "Uploading..." : "Click or drag image here"}</p>
-          <p className="text-xs text-white/30 mt-1">PNG, JPG, WebP · Max 5MB</p>
+          <p className="text-sm text-white/70">{uploading ? "Загрузка..." : "Нажмите или перетащите фото сюда"}</p>
+          <p className="text-xs text-white/30 mt-1">PNG, JPG, WebP · Макс. 10 МБ</p>
         </div>
       ) : (
         <input
@@ -161,7 +161,7 @@ export default function ImageUpload({ value, onChange, label = "Image", placehol
               onClick={() => onChange("")}
               className="mt-1 inline-flex items-center gap-1 text-xs text-red-400 hover:text-red-300"
             >
-              <X size={11} /> Remove
+              <X size={11} /> Удалить
             </button>
           </div>
         </div>

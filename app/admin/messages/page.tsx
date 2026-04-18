@@ -10,16 +10,16 @@ export default async function MessagesPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-white">Messages</h1>
+        <h1 className="text-2xl font-bold text-white">Сообщения</h1>
         <p className="text-white/50 text-sm mt-1">
-          {messages.length} total · <span style={{ color: "#cd9e66" }}>{unread} unread</span>
+          {messages.length} всего · <span style={{ color: "#cd9e66" }}>{unread} непрочитанных</span>
         </p>
       </div>
 
       {messages.length === 0 ? (
         <div className="py-16 text-center text-white/30 rounded-xl" style={{ background: "#142848", border: "1px solid rgba(255,255,255,0.07)" }}>
           <Mail size={32} className="mx-auto mb-3 opacity-30" />
-          <p>No messages yet.</p>
+          <p>Сообщений пока нет.</p>
         </div>
       ) : (
         <div className="space-y-3">
@@ -59,7 +59,7 @@ export default async function MessagesPage() {
                     {new Date(msg.createdAt).toLocaleString("en-GB")}
                     {msg.read && (
                       <span className="ml-2 flex items-center gap-1 text-white/20">
-                        <CheckCircle2 size={10} /> Read
+                        <CheckCircle2 size={10} /> Прочитано
                       </span>
                     )}
                   </div>

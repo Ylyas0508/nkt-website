@@ -8,17 +8,17 @@ export default async function AdminDashboard() {
   const unread = messages.filter((m) => !m.read).length;
 
   const stats = [
-    { label: "Total Products", value: products.length, icon: Package, color: "#cd9e66", href: "/admin/products", badge: undefined as number | undefined },
-    { label: "Blog Posts", value: posts.length, icon: Newspaper, color: "#14b8a6", href: "/admin/blog", badge: undefined as number | undefined },
-    { label: "Messages", value: messages.length, icon: Inbox, color: "#60a5fa", href: "/admin/messages", badge: unread > 0 ? unread : undefined },
-    { label: "Languages", value: 4, icon: Globe, color: "#a78bfa", href: "#", badge: undefined as number | undefined },
+    { label: "Всего товаров", value: products.length, icon: Package, color: "#cd9e66", href: "/admin/products", badge: undefined as number | undefined },
+    { label: "Статьи блога", value: posts.length, icon: Newspaper, color: "#14b8a6", href: "/admin/blog", badge: undefined as number | undefined },
+    { label: "Сообщения", value: messages.length, icon: Inbox, color: "#60a5fa", href: "/admin/messages", badge: unread > 0 ? unread : undefined },
+    { label: "Языки сайта", value: 4, icon: Globe, color: "#a78bfa", href: "#", badge: undefined as number | undefined },
   ];
 
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-white">Dashboard</h1>
-        <p className="text-white/50 text-sm mt-1">Welcome to Nanning Kazan Trading admin panel.</p>
+        <h1 className="text-2xl font-bold text-white">Главная</h1>
+        <p className="text-white/50 text-sm mt-1">Добро пожаловать в панель управления Nanning Kazan Trading.</p>
       </div>
 
       {/* Stats */}
@@ -38,7 +38,7 @@ export default async function AdminDashboard() {
             </div>
             <p className="text-3xl font-bold text-white">{value}</p>
             {badge !== undefined && (
-              <p className="text-xs mt-1 font-medium" style={{ color: "#cd9e66" }}>{badge} unread</p>
+              <p className="text-xs mt-1 font-medium" style={{ color: "#cd9e66" }}>{badge} непрочитанных</p>
             )}
           </a>
         ))}
@@ -48,8 +48,8 @@ export default async function AdminDashboard() {
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
         <div className="rounded-xl p-6" style={{ background: "#142848", border: "1px solid rgba(255,255,255,0.07)" }}>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-white font-semibold">Recent Products</h2>
-            <a href="/admin/products" className="text-xs" style={{ color: "#cd9e66" }}>View all →</a>
+            <h2 className="text-white font-semibold">Последние товары</h2>
+            <a href="/admin/products" className="text-xs" style={{ color: "#cd9e66" }}>Все товары →</a>
           </div>
           <div className="space-y-3">
             {products.slice(0, 4).map((p) => (
@@ -60,7 +60,7 @@ export default async function AdminDashboard() {
                   <p className="text-white/40 text-xs capitalize">{p.category.replace("-", " ")}</p>
                 </div>
                 <a href={`/admin/products/${p.id}`} className="text-xs px-2 py-1 rounded" style={{ color: "#cd9e66", background: "rgba(205,158,102,0.1)" }}>
-                  Edit
+                  Изменить
                 </a>
               </div>
             ))}
@@ -69,8 +69,8 @@ export default async function AdminDashboard() {
 
         <div className="rounded-xl p-6" style={{ background: "#142848", border: "1px solid rgba(255,255,255,0.07)" }}>
           <div className="flex items-center justify-between mb-4">
-            <h2 className="text-white font-semibold">Recent Blog Posts</h2>
-            <a href="/admin/blog" className="text-xs" style={{ color: "#14b8a6" }}>View all →</a>
+            <h2 className="text-white font-semibold">Последние статьи</h2>
+            <a href="/admin/blog" className="text-xs" style={{ color: "#14b8a6" }}>Все статьи →</a>
           </div>
           <div className="space-y-3">
             {posts.slice(0, 4).map((post) => (
@@ -81,7 +81,7 @@ export default async function AdminDashboard() {
                   <p className="text-white/40 text-xs">{post.date}</p>
                 </div>
                 <a href={`/admin/blog/${post.id}`} className="text-xs px-2 py-1 rounded" style={{ color: "#14b8a6", background: "rgba(20,184,166,0.1)" }}>
-                  Edit
+                  Изменить
                 </a>
               </div>
             ))}

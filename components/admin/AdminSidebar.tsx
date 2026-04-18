@@ -4,13 +4,13 @@ import { useRouter, usePathname } from "next/navigation";
 import { LayoutDashboard, Package, Newspaper, LogOut, ExternalLink, Layers, Settings, Inbox, Users } from "lucide-react";
 
 const links = [
-  { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
-  { href: "/admin/products", label: "Products", icon: Package },
-  { href: "/admin/blog", label: "Blog Posts", icon: Newspaper },
-  { href: "/admin/categories", label: "Categories", icon: Layers },
-  { href: "/admin/team", label: "Team", icon: Users },
-  { href: "/admin/messages", label: "Messages", icon: Inbox },
-  { href: "/admin/settings", label: "Settings", icon: Settings },
+  { href: "/admin", label: "Главная", icon: LayoutDashboard, exact: true },
+  { href: "/admin/products", label: "Товары", icon: Package },
+  { href: "/admin/blog", label: "Блог", icon: Newspaper },
+  { href: "/admin/categories", label: "Категории", icon: Layers },
+  { href: "/admin/team", label: "Команда", icon: Users },
+  { href: "/admin/messages", label: "Сообщения", icon: Inbox },
+  { href: "/admin/settings", label: "Настройки", icon: Settings },
 ];
 
 export default function AdminSidebar() {
@@ -33,7 +33,7 @@ export default function AdminSidebar() {
             NKT
           </div>
           <div>
-            <p className="text-white font-semibold text-sm">Admin Panel</p>
+            <p className="text-white font-semibold text-sm">Панель управления</p>
             <p className="text-xs" style={{ color: "#cd9e66" }}>Nanning Kazan</p>
           </div>
         </div>
@@ -69,14 +69,14 @@ export default function AdminSidebar() {
           className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-white/50 hover:text-white transition-colors"
         >
           <ExternalLink size={14} />
-          View Website
+          Перейти на сайт
         </a>
         <button
           onClick={logout}
           className="w-full flex items-center gap-2 px-3 py-2 rounded-lg text-sm text-red-400 hover:text-red-300 hover:bg-red-900/20 transition-colors"
         >
           <LogOut size={14} />
-          Logout
+          Выйти
         </button>
       </div>
     </aside>

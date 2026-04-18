@@ -44,7 +44,7 @@ export default function CategoryForm({ initial, isDefault }: Props) {
   const [error, setError] = useState("");
 
   const handleSave = async () => {
-    if (!form.name.en) { setError("English name is required"); return; }
+    if (!form.name.en) { setError("Название на английском обязательно"); return; }
     setSaving(true);
     setError("");
     try {
@@ -76,10 +76,10 @@ export default function CategoryForm({ initial, isDefault }: Props) {
       <div className="flex items-center gap-4 mb-8">
         <a href="/admin/categories" className="flex items-center gap-1 text-white/50 hover:text-white transition-colors text-sm">
           <ArrowLeft size={16} />
-          Categories
+          Категории
         </a>
         <span className="text-white/20">/</span>
-        <h1 className="text-xl font-bold text-white">{initial ? "Edit Category" : "Add New Category"}</h1>
+        <h1 className="text-xl font-bold text-white">{initial ? "Редактировать категорию" : "Добавить категорию"}</h1>
       </div>
 
       <div className="space-y-6">
@@ -103,36 +103,36 @@ export default function CategoryForm({ initial, isDefault }: Props) {
 
           <div className="space-y-4">
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Category Name ({LANG_LABELS[activeLang]})</label>
+              <label className="block text-xs text-white/50 mb-1.5">Название категории ({LANG_LABELS[activeLang]})</label>
               <input
                 className="form-input"
                 value={form.name[activeLang] || ""}
                 onChange={(e) => setForm({ ...form, name: { ...form.name, [activeLang]: e.target.value } })}
-                placeholder={`Category name in ${LANG_LABELS[activeLang]}`}
+                placeholder={`Название на ${LANG_LABELS[activeLang]}`}
               />
             </div>
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Description ({LANG_LABELS[activeLang]})</label>
+              <label className="block text-xs text-white/50 mb-1.5">Описание ({LANG_LABELS[activeLang]})</label>
               <textarea
                 className="form-input resize-none"
                 rows={3}
                 value={form.description[activeLang] || ""}
                 onChange={(e) => setForm({ ...form, description: { ...form.description, [activeLang]: e.target.value } })}
-                placeholder={`Short description in ${LANG_LABELS[activeLang]}`}
+                placeholder={`Краткое описание на ${LANG_LABELS[activeLang]}`}
               />
             </div>
           </div>
           {isDefault && (
-            <p className="mt-3 text-xs text-white/30">Note: Editing names/descriptions here will override the default translations for this category on the website.</p>
+            <p className="mt-3 text-xs text-white/30">Примечание: редактирование названия и описания здесь перезапишет стандартные переводы этой категории на сайте.</p>
           )}
         </div>
 
         {/* Visual details */}
         <div className="rounded-xl p-6 space-y-4" style={{ background: "#0d1f35", border: "1px solid rgba(255,255,255,0.07)" }}>
-          <h3 className="text-white font-semibold text-sm">Visual Details</h3>
+          <h3 className="text-white font-semibold text-sm">Оформление</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Accent Color</label>
+              <label className="block text-xs text-white/50 mb-1.5">Цвет акцента</label>
               <div className="flex gap-2 items-center">
                 <input
                   type="color"
@@ -149,7 +149,7 @@ export default function CategoryForm({ initial, isDefault }: Props) {
               </div>
             </div>
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Icon</label>
+              <label className="block text-xs text-white/50 mb-1.5">Иконка</label>
               <select
                 className="form-input"
                 value={form.icon}
@@ -164,7 +164,7 @@ export default function CategoryForm({ initial, isDefault }: Props) {
           <ImageUpload
             value={form.image}
             onChange={(url) => setForm({ ...form, image: url })}
-            label="Category Image"
+            label="Фото категории"
           />
         </div>
 
@@ -178,14 +178,14 @@ export default function CategoryForm({ initial, isDefault }: Props) {
             style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0a1628" }}
           >
             <Save size={15} />
-            {saving ? "Saving..." : "Save Category"}
+            {saving ? "Сохранение..." : "Сохранить категорию"}
           </button>
           <a
             href="/admin/categories"
             className="px-6 py-2.5 rounded-xl text-sm font-semibold text-white/60 hover:text-white transition-colors"
             style={{ background: "rgba(255,255,255,0.05)" }}
           >
-            Cancel
+            Отмена
           </a>
         </div>
       </div>

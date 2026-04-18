@@ -9,8 +9,8 @@ export default async function TeamAdminPage() {
     <div className="p-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-white">Team</h1>
-          <p className="text-white/50 text-sm mt-1">{members.length} team members</p>
+          <h1 className="text-2xl font-bold text-white">Команда</h1>
+          <p className="text-white/50 text-sm mt-1">{members.length} сотрудников</p>
         </div>
         <a
           href="/admin/team/new"
@@ -18,7 +18,7 @@ export default async function TeamAdminPage() {
           style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0f2040" }}
         >
           <Plus size={16} />
-          Add Team Member
+          Добавить сотрудника
         </a>
       </div>
 
@@ -26,10 +26,10 @@ export default async function TeamAdminPage() {
         <table className="w-full">
           <thead>
             <tr style={{ background: "#142848", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Photo</th>
-              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Name</th>
-              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40 hidden sm:table-cell">Order</th>
-              <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Actions</th>
+              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Фото</th>
+              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Имя</th>
+              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40 hidden sm:table-cell">Порядок</th>
+              <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Действия</th>
             </tr>
           </thead>
           <tbody>
@@ -73,7 +73,7 @@ export default async function TeamAdminPage() {
         </table>
         {members.length === 0 && (
           <div className="py-16 text-center text-white/30">
-            <p>No team members yet. <a href="/admin/team/new" style={{ color: "#cd9e66" }}>Add one →</a></p>
+            <p>Сотрудников пока нет. <a href="/admin/team/new" style={{ color: "#cd9e66" }}>Добавить →</a></p>
           </div>
         )}
       </div>

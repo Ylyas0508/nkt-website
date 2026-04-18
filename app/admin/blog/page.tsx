@@ -9,8 +9,8 @@ export default async function BlogAdminPage() {
     <div className="p-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-white">Blog Posts</h1>
-          <p className="text-white/50 text-sm mt-1">{posts.length} posts published</p>
+          <h1 className="text-2xl font-bold text-white">Блог</h1>
+          <p className="text-white/50 text-sm mt-1">{posts.length} статей опубликовано</p>
         </div>
         <a
           href="/admin/blog/new"
@@ -18,7 +18,7 @@ export default async function BlogAdminPage() {
           style={{ background: "linear-gradient(135deg, #14b8a6, #2dd4bf)", color: "#0f2040" }}
         >
           <Plus size={16} />
-          New Post
+          Новая статья
         </a>
       </div>
 
@@ -55,7 +55,7 @@ export default async function BlogAdminPage() {
         ))}
         {posts.length === 0 && (
           <div className="py-16 text-center text-white/30">
-            <p>No posts yet. <a href="/admin/blog/new" style={{ color: "#14b8a6" }}>Write one →</a></p>
+            <p>Статей пока нет. <a href="/admin/blog/new" style={{ color: "#14b8a6" }}>Написать →</a></p>
           </div>
         )}
       </div>

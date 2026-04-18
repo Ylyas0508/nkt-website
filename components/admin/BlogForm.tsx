@@ -64,10 +64,10 @@ export default function BlogForm({ initial }: { initial?: BlogPost }) {
       <div className="flex items-center gap-4 mb-8">
         <a href="/admin/blog" className="flex items-center gap-1 text-white/50 hover:text-white transition-colors text-sm">
           <ArrowLeft size={16} />
-          Blog Posts
+          Блог
         </a>
         <span className="text-white/20">/</span>
-        <h1 className="text-xl font-bold text-white">{initial ? "Edit Post" : "New Blog Post"}</h1>
+        <h1 className="text-xl font-bold text-white">{initial ? "Редактировать статью" : "Новая статья"}</h1>
       </div>
 
       <div className="space-y-6">
@@ -90,32 +90,32 @@ export default function BlogForm({ initial }: { initial?: BlogPost }) {
           </div>
           <div className="space-y-4">
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Title ({LANG_LABELS[activeLang]})</label>
+              <label className="block text-xs text-white/50 mb-1.5">Заголовок ({LANG_LABELS[activeLang]})</label>
               <input
                 className="form-input"
                 value={(form.title as Record<string, string>)[activeLang] || ""}
                 onChange={(e) => setLangField("title", e.target.value)}
-                placeholder={`Post title in ${LANG_LABELS[activeLang]}`}
+                placeholder={`Заголовок на ${LANG_LABELS[activeLang]}`}
               />
             </div>
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Excerpt ({LANG_LABELS[activeLang]})</label>
+              <label className="block text-xs text-white/50 mb-1.5">Краткое описание ({LANG_LABELS[activeLang]})</label>
               <textarea
                 className="form-input resize-none"
                 rows={2}
                 value={(form.excerpt as Record<string, string>)[activeLang] || ""}
                 onChange={(e) => setLangField("excerpt", e.target.value)}
-                placeholder="Short summary..."
+                placeholder="Краткое описание статьи..."
               />
             </div>
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Content ({LANG_LABELS[activeLang]})</label>
+              <label className="block text-xs text-white/50 mb-1.5">Текст статьи ({LANG_LABELS[activeLang]})</label>
               <textarea
                 className="form-input resize-none"
                 rows={10}
                 value={(form.content as Record<string, string>)[activeLang] || ""}
                 onChange={(e) => setLangField("content", e.target.value)}
-                placeholder="Full article content..."
+                placeholder="Полный текст статьи..."
               />
             </div>
           </div>
@@ -123,10 +123,10 @@ export default function BlogForm({ initial }: { initial?: BlogPost }) {
 
         {/* Meta */}
         <div className="rounded-xl p-6 space-y-4" style={{ background: "#0d1f35", border: "1px solid rgba(255,255,255,0.07)" }}>
-          <h3 className="text-white font-semibold text-sm">Post Details</h3>
+          <h3 className="text-white font-semibold text-sm">Параметры статьи</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Category</label>
+              <label className="block text-xs text-white/50 mb-1.5">Категория</label>
               <select
                 className="form-input"
                 value={form.category}
@@ -138,7 +138,7 @@ export default function BlogForm({ initial }: { initial?: BlogPost }) {
               </select>
             </div>
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Date</label>
+              <label className="block text-xs text-white/50 mb-1.5">Дата</label>
               <input
                 type="date"
                 className="form-input"
@@ -150,11 +150,11 @@ export default function BlogForm({ initial }: { initial?: BlogPost }) {
           <ImageUpload
             value={form.image}
             onChange={(url) => setField("image", url)}
-            label="Cover Image"
+            label="Обложка статьи"
           />
         </div>
 
-        {error && <p className="text-red-400 text-sm">{error}</p>}
+        {error && <p className="text-red-400 text-sm">Ошибка сохранения. Попробуйте ещё раз.</p>}
 
         <div className="flex gap-3">
           <button
@@ -164,14 +164,14 @@ export default function BlogForm({ initial }: { initial?: BlogPost }) {
             style={{ background: "linear-gradient(135deg, #14b8a6, #2dd4bf)", color: "#0a1628" }}
           >
             <Save size={15} />
-            {saving ? "Saving..." : "Save Post"}
+            {saving ? "Сохранение..." : "Сохранить статью"}
           </button>
           <a
             href="/admin/blog"
             className="px-6 py-2.5 rounded-xl text-sm font-semibold text-white/60 hover:text-white transition-colors"
             style={{ background: "rgba(255,255,255,0.05)" }}
           >
-            Cancel
+            Отмена
           </a>
         </div>
       </div>

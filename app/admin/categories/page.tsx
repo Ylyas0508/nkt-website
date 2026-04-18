@@ -32,8 +32,8 @@ export default async function CategoriesAdminPage() {
     <div className="p-8">
       <div className="flex items-center justify-between mb-8">
         <div>
-          <h1 className="text-2xl font-bold text-white">Categories</h1>
-          <p className="text-white/50 text-sm mt-1">{allCategories.length} categories total</p>
+          <h1 className="text-2xl font-bold text-white">Категории</h1>
+          <p className="text-white/50 text-sm mt-1">{allCategories.length} категорий всего</p>
         </div>
         <a
           href="/admin/categories/new"
@@ -41,7 +41,7 @@ export default async function CategoriesAdminPage() {
           style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0f2040" }}
         >
           <Plus size={16} />
-          Add Category
+          Добавить категорию
         </a>
       </div>
 
@@ -49,10 +49,10 @@ export default async function CategoriesAdminPage() {
         <table className="w-full">
           <thead>
             <tr style={{ background: "#142848", borderBottom: "1px solid rgba(255,255,255,0.07)" }}>
-              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Category</th>
-              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40 hidden sm:table-cell">Type</th>
-              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40 hidden md:table-cell">Color</th>
-              <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Actions</th>
+              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Категория</th>
+              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40 hidden sm:table-cell">Тип</th>
+              <th className="text-left px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40 hidden md:table-cell">Цвет</th>
+              <th className="text-right px-4 py-3 text-xs font-semibold uppercase tracking-wider text-white/40">Действия</th>
             </tr>
           </thead>
           <tbody>
@@ -82,7 +82,7 @@ export default async function CategoriesAdminPage() {
                       background: cat.isCustom ? "rgba(20,184,166,0.15)" : "rgba(205,158,102,0.15)",
                       color: cat.isCustom ? "#14b8a6" : "#cd9e66"
                     }}>
-                      {cat.isCustom ? "Custom" : "Default"}
+                      {cat.isCustom ? "Своя" : "Базовая"}
                     </span>
                   </td>
                   <td className="px-4 py-3 hidden md:table-cell">

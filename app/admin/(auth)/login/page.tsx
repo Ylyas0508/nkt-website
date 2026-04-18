@@ -36,7 +36,7 @@ export default function LoginPage() {
             style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0a1628" }}>
             NKT
           </div>
-          <h1 className="text-white text-2xl font-bold">Admin Panel</h1>
+          <h1 className="text-white text-2xl font-bold">Панель управления</h1>
           <p className="text-white/50 text-sm mt-1">Nanning Kazan Trading Co., Ltd</p>
         </div>
 
@@ -46,7 +46,7 @@ export default function LoginPage() {
           style={{ background: "#0d1f35", border: "1px solid rgba(205,158,102,0.2)" }}
         >
           <div>
-            <label className="block text-xs text-white/50 mb-1.5">Username</label>
+            <label className="block text-xs text-white/50 mb-1.5">Логин</label>
             <input
               className="form-input"
               value={form.username}
@@ -57,7 +57,7 @@ export default function LoginPage() {
             />
           </div>
           <div>
-            <label className="block text-xs text-white/50 mb-1.5">Password</label>
+            <label className="block text-xs text-white/50 mb-1.5">Пароль</label>
             <input
               type="password"
               className="form-input"
@@ -68,7 +68,7 @@ export default function LoginPage() {
             />
           </div>
           {error && (
-            <p className="text-red-400 text-sm text-center">{error}</p>
+            <p className="text-red-400 text-sm text-center">Неверный логин или пароль</p>
           )}
           <button
             type="submit"
@@ -76,12 +76,12 @@ export default function LoginPage() {
             className="w-full py-3 rounded-xl font-semibold text-sm transition-all hover:brightness-110"
             style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0a1628" }}
           >
-            {loading ? "Signing in..." : "Sign In"}
+            {loading ? "Вход..." : "Войти"}
           </button>
         </form>
 
         <p className="text-center text-xs text-white/20 mt-6">
-          Default credentials: admin / kazan2024
+          Логин: admin · Пароль: kazan2024
         </p>
       </div>
     </div>

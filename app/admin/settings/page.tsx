@@ -32,16 +32,16 @@ export default function SettingsPage() {
   return (
     <div className="p-8">
       <div className="mb-8">
-        <h1 className="text-2xl font-bold text-white">Site Settings</h1>
-        <p className="text-white/50 text-sm mt-1">Edit the About section content and stats</p>
+        <h1 className="text-2xl font-bold text-white">Настройки сайта</h1>
+        <p className="text-white/50 text-sm mt-1">Редактирование раздела «О нас» и статистики</p>
       </div>
 
       <div className="max-w-lg space-y-6">
         {/* About Image */}
         <div className="rounded-xl p-6" style={{ background: "#142848", border: "1px solid rgba(255,255,255,0.07)" }}>
-          <h2 className="text-white font-semibold mb-5">About Section Image</h2>
+          <h2 className="text-white font-semibold mb-5">Фото раздела «О нас»</h2>
           <div>
-            <label className="block text-sm text-white/60 mb-1.5">Warehouse / Facility Photo URL</label>
+            <label className="block text-sm text-white/60 mb-1.5">URL фотографии склада / офиса</label>
             <input
               type="text"
               value={stats.aboutImage}
@@ -62,12 +62,12 @@ export default function SettingsPage() {
 
         {/* Stats */}
         <div className="rounded-xl p-6" style={{ background: "#142848", border: "1px solid rgba(255,255,255,0.07)" }}>
-          <h2 className="text-white font-semibold mb-5">About Section Stats</h2>
+          <h2 className="text-white font-semibold mb-5">Статистика раздела «О нас»</h2>
           <div className="space-y-4">
             {[
-              { key: "years", label: "Years in Business", suffix: "+" },
-              { key: "countries", label: "Countries Reached", suffix: "+" },
-              { key: "deals", label: "Deals Completed", suffix: "+" },
+              { key: "years", label: "Лет на рынке", suffix: "+" },
+              { key: "countries", label: "Стран охвата", suffix: "+" },
+              { key: "deals", label: "Сделок завершено", suffix: "+" },
             ].map(({ key, label, suffix }) => (
               <div key={key}>
                 <label className="block text-sm text-white/60 mb-1.5">{label}</label>
@@ -78,7 +78,7 @@ export default function SettingsPage() {
                     onChange={e => setStats(p => ({ ...p, [key]: Number(e.target.value) }))}
                     className="w-32 px-3 py-2 rounded-lg text-white text-sm bg-white/5 border border-white/10 focus:outline-none focus:border-yellow-500/50"
                   />
-                  <span className="text-white/40 text-sm">{suffix} shown on website</span>
+                  <span className="text-white/40 text-sm">{suffix} отображается на сайте</span>
                 </div>
               </div>
             ))}
@@ -92,7 +92,7 @@ export default function SettingsPage() {
           style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0f2040" }}
         >
           <Save size={14} />
-          {saved ? "Saved!" : saving ? "Saving..." : "Save Changes"}
+          {saved ? "Сохранено!" : saving ? "Сохранение..." : "Сохранить изменения"}
         </button>
       </div>
     </div>

@@ -37,7 +37,7 @@ export default function TeamForm({ initial }: Props) {
   const [error, setError] = useState("");
 
   const handleSave = async () => {
-    if (!form.name.en) { setError("English name is required"); return; }
+    if (!form.name.en) { setError("Имя на английском обязательно"); return; }
     setSaving(true);
     setError("");
     try {
@@ -62,10 +62,10 @@ export default function TeamForm({ initial }: Props) {
       <div className="flex items-center gap-4 mb-8">
         <a href="/admin/team" className="flex items-center gap-1 text-white/50 hover:text-white transition-colors text-sm">
           <ArrowLeft size={16} />
-          Team
+          Команда
         </a>
         <span className="text-white/20">/</span>
-        <h1 className="text-xl font-bold text-white">{initial ? "Edit Team Member" : "Add Team Member"}</h1>
+        <h1 className="text-xl font-bold text-white">{initial ? "Редактировать сотрудника" : "Добавить сотрудника"}</h1>
       </div>
 
       <div className="space-y-6">
@@ -89,31 +89,31 @@ export default function TeamForm({ initial }: Props) {
 
           <div className="space-y-4">
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Name ({LANG_LABELS[activeLang]})</label>
+              <label className="block text-xs text-white/50 mb-1.5">Имя ({LANG_LABELS[activeLang]})</label>
               <input
                 className="form-input"
                 value={form.name[activeLang] || ""}
                 onChange={(e) => setForm({ ...form, name: { ...form.name, [activeLang]: e.target.value } })}
-                placeholder={`Name in ${LANG_LABELS[activeLang]}`}
+                placeholder={`Имя на ${LANG_LABELS[activeLang]}`}
               />
             </div>
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Role ({LANG_LABELS[activeLang]})</label>
+              <label className="block text-xs text-white/50 mb-1.5">Должность ({LANG_LABELS[activeLang]})</label>
               <input
                 className="form-input"
                 value={form.role[activeLang] || ""}
                 onChange={(e) => setForm({ ...form, role: { ...form.role, [activeLang]: e.target.value } })}
-                placeholder={`Role in ${LANG_LABELS[activeLang]}`}
+                placeholder={`Должность на ${LANG_LABELS[activeLang]}`}
               />
             </div>
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Description ({LANG_LABELS[activeLang]})</label>
+              <label className="block text-xs text-white/50 mb-1.5">Описание ({LANG_LABELS[activeLang]})</label>
               <textarea
                 className="form-input resize-none"
                 rows={3}
                 value={form.description[activeLang] || ""}
                 onChange={(e) => setForm({ ...form, description: { ...form.description, [activeLang]: e.target.value } })}
-                placeholder={`Short description in ${LANG_LABELS[activeLang]}`}
+                placeholder={`Краткое описание на ${LANG_LABELS[activeLang]}`}
               />
             </div>
           </div>
@@ -121,10 +121,10 @@ export default function TeamForm({ initial }: Props) {
 
         {/* Visual details */}
         <div className="rounded-xl p-6 space-y-4" style={{ background: "#0d1f35", border: "1px solid rgba(255,255,255,0.07)" }}>
-          <h3 className="text-white font-semibold text-sm">Profile Details</h3>
+          <h3 className="text-white font-semibold text-sm">Данные профиля</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Emoji (optional)</label>
+              <label className="block text-xs text-white/50 mb-1.5">Эмодзи (необязательно)</label>
               <input
                 className="form-input"
                 value={form.emoji}
@@ -134,7 +134,7 @@ export default function TeamForm({ initial }: Props) {
               />
             </div>
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Display Order</label>
+              <label className="block text-xs text-white/50 mb-1.5">Порядок отображения</label>
               <input
                 type="number"
                 className="form-input"
@@ -147,7 +147,7 @@ export default function TeamForm({ initial }: Props) {
           <ImageUpload
             value={form.image}
             onChange={(url) => setForm({ ...form, image: url })}
-            label="Profile Photo"
+            label="Фото сотрудника"
           />
         </div>
 
@@ -161,14 +161,14 @@ export default function TeamForm({ initial }: Props) {
             style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0a1628" }}
           >
             <Save size={15} />
-            {saving ? "Saving..." : "Save Team Member"}
+            {saving ? "Сохранение..." : "Сохранить сотрудника"}
           </button>
           <a
             href="/admin/team"
             className="px-6 py-2.5 rounded-xl text-sm font-semibold text-white/60 hover:text-white transition-colors"
             style={{ background: "rgba(255,255,255,0.05)" }}
           >
-            Cancel
+            Отмена
           </a>
         </div>
       </div>
