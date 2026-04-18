@@ -59,8 +59,9 @@ export default function BlogSection() {
                 </div>
               ))
             : posts.map((post, i) => (
-                <motion.div
+                <motion.a
                   key={post.id}
+                  href={`/blog/${post.id}`}
                   initial={{ opacity: 0, y: 30 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
@@ -112,7 +113,7 @@ export default function BlogSection() {
                       <ArrowRight size={12} style={{ color: "#cd9e66" }} />
                     </div>
                   </div>
-                </motion.div>
+                </motion.a>
               ))}
         </div>
 

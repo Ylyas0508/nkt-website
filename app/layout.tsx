@@ -5,6 +5,7 @@ import { LanguageProvider } from "@/lib/i18n";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import WhatsAppButton from "@/components/layout/WhatsAppButton";
+import ScrollToTop from "@/components/layout/ScrollToTop";
 
 const inter = Inter({
   variable: "--font-inter",
@@ -19,10 +20,37 @@ const playfair = Playfair_Display({
 });
 
 export const metadata: Metadata = {
-  title: "Nanning Kazan Trading Co., Ltd | Global Commodity Trade",
+  metadataBase: new URL("https://nanning-kazan-trading.online"),
+  title: {
+    default: "Nanning Kazan Trading Co., Ltd | Global Commodity Trade",
+    template: "%s | Nanning Kazan Trading",
+  },
   description:
     "Nanning Kazan Trading Co., Ltd (南宁市卡赞商贸有限公司) — Your trusted partner for oil, chemicals, metals, agricultural products, textiles, machinery, and more. Export & Import worldwide.",
-  keywords: "trading company, oil, chemicals, metals, agricultural, textiles, machinery, export, import, China, Nanning",
+  keywords: [
+    "trading company", "oil", "petroleum", "chemicals", "metals", "metallurgy",
+    "agricultural", "textiles", "machinery", "sulfur", "export", "import",
+    "China", "Nanning", "Guangxi", "commodity trade", "international trade",
+  ],
+  authors: [{ name: "Nanning Kazan Trading Co., Ltd" }],
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: "https://nanning-kazan-trading.online",
+    siteName: "Nanning Kazan Trading",
+    title: "Nanning Kazan Trading Co., Ltd | Global Commodity Trade",
+    description:
+      "Your trusted partner for oil, chemicals, metals, agricultural products, textiles, machinery, and more. Export & Import worldwide.",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Nanning Kazan Trading Co., Ltd",
+    description: "Global trading company connecting markets across continents.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+  },
 };
 
 export default function RootLayout({
@@ -38,6 +66,7 @@ export default function RootLayout({
           <main>{children}</main>
           <Footer />
           <WhatsAppButton />
+          <ScrollToTop />
         </LanguageProvider>
       </body>
     </html>
