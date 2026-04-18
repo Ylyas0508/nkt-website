@@ -21,11 +21,49 @@ export default function ImageUpload({ value, onChange, label = "Image", placehol
     setUploading(true);
     setError("");
     try {
+      if (!file.type.startsWith("image/")) {
+        throw new Error("Only images allowed");
+      }
+      if (file.size > 10 * 1024 * 1024) {
+        throw new Error("File too large (max 10MB)");
+      }
+
+      // Try client-upload protocol first (bypasses 4.5MB serverless limit).
+      try {
+        const { upload: blobUpload } = await import("@vercel/blob/client");
+        const safe = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");
+        const blob = await blobUpload(`${Date.now()}-${safe}`, file, {
+          access: "public",
+          handleUploadUrl: "/api/upload",
+        });
+        onChange(blob.url);
+        return;
+      } catch (clientErr) {
+        // If Blob isn't configured on server, fall back to FormData upload.
+        const msg = clientErr instanceof Error ? clientErr.message : "";
+        if (!/not configured|BLOB_READ_WRITE_TOKEN/i.test(msg)) {
+          // Re-throw real errors (auth, size, type, etc.)
+          if (msg) throw clientErr;
+        }
+      }
+
+      // Fallback: FormData (local dev or small files)
       const fd = new FormData();
       fd.append("file", file);
       const res = await fetch("/api/upload", { method: "POST", body: fd });
-      const data = await res.json();
-      if (!res.ok) throw new Error(data.error || "Upload failed");
+      const text = await res.text();
+      let data: { url?: string; error?: string } = {};
+      try {
+        data = text ? JSON.parse(text) : {};
+      } catch {
+        throw new Error(
+          res.status === 413
+            ? "File too large for direct upload. Enable Vercel Blob storage."
+            : `Upload failed (HTTP ${res.status})`
+        );
+      }
+      if (!res.ok) throw new Error(data.error || `Upload failed (HTTP ${res.status})`);
+      if (!data.url) throw new Error("Upload returned no URL");
       onChange(data.url);
     } catch (err) {
       setError(err instanceof Error ? err.message : "Upload failed");

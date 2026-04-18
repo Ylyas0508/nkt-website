@@ -1,11 +1,47 @@
 import { NextRequest, NextResponse } from "next/server";
+import { handleUpload, type HandleUploadBody } from "@vercel/blob/client";
 import { getSession } from "@/lib/auth";
 
 export const runtime = "nodejs";
 
 export async function POST(req: NextRequest) {
-  if (!(await getSession())) return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  if (!(await getSession())) {
+    return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
+  }
 
+  const contentType = req.headers.get("content-type") || "";
+
+  // --- Client-upload protocol (JSON body) — bypasses Vercel's 4.5MB limit ---
+  if (contentType.includes("application/json")) {
+    if (!process.env.BLOB_READ_WRITE_TOKEN) {
+      return NextResponse.json(
+        { error: "Blob storage not configured. Set BLOB_READ_WRITE_TOKEN." },
+        { status: 500 }
+      );
+    }
+    try {
+      const body = (await req.json()) as HandleUploadBody;
+      const jsonResponse = await handleUpload({
+        body,
+        request: req,
+        onBeforeGenerateToken: async () => ({
+          allowedContentTypes: ["image/jpeg", "image/png", "image/webp", "image/gif"],
+          addRandomSuffix: true,
+          tokenPayload: null,
+          maximumSizeInBytes: 10 * 1024 * 1024,
+        }),
+        onUploadCompleted: async () => {},
+      });
+      return NextResponse.json(jsonResponse);
+    } catch (err) {
+      return NextResponse.json(
+        { error: err instanceof Error ? err.message : "Upload failed" },
+        { status: 400 }
+      );
+    }
+  }
+
+  // --- FormData fallback (small files / local dev) ---
   const formData = await req.formData();
   const file = formData.get("file") as File | null;
   if (!file) return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
@@ -25,7 +61,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ url: blob.url });
   }
 
-  // Local dev fallback — writes to public/uploads/
+  // Local dev — writes to public/uploads/
   const fs = await import("fs/promises");
   const path = await import("path");
   const uploadsDir = path.join(process.cwd(), "public", "uploads");
