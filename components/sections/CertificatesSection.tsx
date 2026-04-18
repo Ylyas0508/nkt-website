@@ -16,16 +16,8 @@ const CATEGORY_ICONS: Record<string, React.ReactNode> = {
   other: <FileText size={20} />,
 };
 
-const CATEGORY_LABELS_RU: Record<string, string> = {
-  certificate: "Сертификат",
-  license: "Лицензия",
-  document: "Документ",
-  standard: "Стандарт",
-  other: "Прочее",
-};
-
 export default function CertificatesSection() {
-  const { locale } = useTranslation();
+  const { t, locale } = useTranslation();
   const [certs, setCerts] = useState<Certificate[]>([]);
 
   useEffect(() => {
@@ -39,8 +31,8 @@ export default function CertificatesSection() {
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         <AnimatedSection className="text-center mb-14">
           <SectionHeading
-            title="Сертификаты и документы"
-            subtitle="Наши лицензии, сертификаты соответствия и корпоративные документы — доступны для скачивания."
+            title={t("certs.title")}
+            subtitle={t("certs.subtitle")}
             centered
           />
         </AnimatedSection>
@@ -50,7 +42,7 @@ export default function CertificatesSection() {
             const title = cert.title[locale] || cert.title.ru || cert.title.en;
             const desc = cert.description[locale] || cert.description.ru || cert.description.en;
             const icon = CATEGORY_ICONS[cert.category] || <FileText size={20} />;
-            const label = CATEGORY_LABELS_RU[cert.category] || cert.category;
+            const label = t(`certs.cat.${cert.category}`) || cert.category;
 
             return (
               <motion.div
@@ -96,13 +88,13 @@ export default function CertificatesSection() {
                       style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0a1628" }}
                     >
                       <Download size={13} />
-                      Скачать документ
+                      {t("certs.download")}
                     </a>
                   ) : (
                     <div className="mt-auto flex items-center justify-center gap-2 py-2 px-4 rounded-xl text-xs font-semibold opacity-30"
                       style={{ background: "rgba(255,255,255,0.05)", color: "white" }}>
                       <FileText size={13} />
-                      Файл не загружен
+                      {t("certs.no_file")}
                     </div>
                   )}
                 </div>

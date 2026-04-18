@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import type { Certificate } from "@/lib/data";
 import { Save, ArrowLeft } from "lucide-react";
 import ImageUpload from "./ImageUpload";
+import DocumentUpload from "./DocumentUpload";
 
 const LANGS = ["en", "ru", "zh", "tr"] as const;
 const LANG_LABELS: Record<string, string> = { en: "English", ru: "Русский", zh: "中文", tr: "Türkçe" };
@@ -112,12 +113,11 @@ export default function CertificateForm({ initial }: { initial?: Certificate }) 
             </div>
           </div>
 
-          <div>
-            <label className="block text-xs text-white/50 mb-1.5">Ссылка на файл (PDF / DOC)</label>
-            <input className="form-input" value={form.fileUrl}
-              onChange={(e) => setForm({ ...form, fileUrl: e.target.value })}
-              placeholder="https://... или загрузите через Blob" />
-          </div>
+          <DocumentUpload
+            value={form.fileUrl}
+            onChange={(url) => setForm({ ...form, fileUrl: url })}
+            label="Файл документа (PDF, DOC, DOCX, JPG, PNG)"
+          />
 
           <ImageUpload value={form.coverImage}
             onChange={(url) => setForm({ ...form, coverImage: url })}

@@ -84,5 +84,15 @@
   "footer.products": "产品",
   "footer.contact": "联系信息",
   "footer.rights": "版权所有。",
-  "footer.reg": "注册号"
+  "footer.reg": "注册号",
+
+  "certs.title": "证书与文件",
+  "certs.subtitle": "我们的许可证、合规证书及公司文件——可供下载。",
+  "certs.download": "下载文件",
+  "certs.no_file": "文件未上传",
+  "certs.cat.certificate": "证书",
+  "certs.cat.license": "许可证",
+  "certs.cat.document": "文件",
+  "certs.cat.standard": "标准",
+  "certs.cat.other": "其他"
 }

@@ -84,5 +84,15 @@
   "footer.products": "Ürünler",
   "footer.contact": "İletişim Bilgileri",
   "footer.rights": "Tüm hakları saklıdır.",
-  "footer.reg": "Kayıt No"
+  "footer.reg": "Kayıt No",
+
+  "certs.title": "Sertifikalar ve Belgeler",
+  "certs.subtitle": "Lisanslarımız, uygunluk sertifikalarımız ve kurumsal belgelerimiz — indirilebilir.",
+  "certs.download": "Belgeyi İndir",
+  "certs.no_file": "Dosya yüklenmedi",
+  "certs.cat.certificate": "Sertifika",
+  "certs.cat.license": "Lisans",
+  "certs.cat.document": "Belge",
+  "certs.cat.standard": "Standart",
+  "certs.cat.other": "Diğer"
 }

@@ -25,10 +25,15 @@ export async function POST(req: NextRequest) {
         body,
         request: req,
         onBeforeGenerateToken: async () => ({
-          allowedContentTypes: ["image/jpeg", "image/png", "image/webp", "image/gif"],
+          allowedContentTypes: [
+            "image/jpeg", "image/png", "image/webp", "image/gif",
+            "application/pdf",
+            "application/msword",
+            "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+          ],
           addRandomSuffix: true,
           tokenPayload: null,
-          maximumSizeInBytes: 10 * 1024 * 1024,
+          maximumSizeInBytes: 20 * 1024 * 1024,
         }),
         onUploadCompleted: async () => {},
       });
@@ -45,11 +50,18 @@ export async function POST(req: NextRequest) {
   const formData = await req.formData();
   const file = formData.get("file") as File | null;
   if (!file) return NextResponse.json({ error: "No file uploaded" }, { status: 400 });
-  if (!file.type.startsWith("image/")) {
-    return NextResponse.json({ error: "Only images allowed" }, { status: 400 });
+
+  const allowedTypes = [
+    "image/jpeg", "image/png", "image/webp", "image/gif",
+    "application/pdf",
+    "application/msword",
+    "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
+  ];
+  if (!allowedTypes.includes(file.type)) {
+    return NextResponse.json({ error: "Unsupported file type" }, { status: 400 });
   }
-  if (file.size > 5 * 1024 * 1024) {
-    return NextResponse.json({ error: "File too large (max 5MB)" }, { status: 400 });
+  if (file.size > 20 * 1024 * 1024) {
+    return NextResponse.json({ error: "File too large (max 20MB)" }, { status: 400 });
   }
 
   const safeName = file.name.replace(/[^a-zA-Z0-9._-]/g, "_");

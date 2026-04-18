@@ -84,5 +84,15 @@
   "footer.products": "Продукты",
   "footer.contact": "Контактная Информация",
   "footer.rights": "Все права защищены.",
-  "footer.reg": "Рег. номер"
+  "footer.reg": "Рег. номер",
+
+  "certs.title": "Сертификаты и документы",
+  "certs.subtitle": "Наши лицензии, сертификаты соответствия и корпоративные документы — доступны для скачивания.",
+  "certs.download": "Скачать документ",
+  "certs.no_file": "Файл не загружен",
+  "certs.cat.certificate": "Сертификат",
+  "certs.cat.license": "Лицензия",
+  "certs.cat.document": "Документ",
+  "certs.cat.standard": "Стандарт",
+  "certs.cat.other": "Прочее"
 }

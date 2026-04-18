@@ -84,5 +84,15 @@
   "footer.products": "Products",
   "footer.contact": "Contact Info",
   "footer.rights": "All rights reserved.",
-  "footer.reg": "Registration No."
+  "footer.reg": "Registration No.",
+
+  "certs.title": "Certificates & Documents",
+  "certs.subtitle": "Our licenses, compliance certificates and corporate documents — available for download.",
+  "certs.download": "Download Document",
+  "certs.no_file": "File not uploaded",
+  "certs.cat.certificate": "Certificate",
+  "certs.cat.license": "License",
+  "certs.cat.document": "Document",
+  "certs.cat.standard": "Standard",
+  "certs.cat.other": "Other"
 }
