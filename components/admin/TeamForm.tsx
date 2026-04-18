@@ -16,6 +16,10 @@ interface FormData {
   image: string;
   emoji: string;
   order: number;
+  whatsapp: string;
+  wechat: string;
+  facebook: string;
+  email: string;
 }
 
 interface Props {
@@ -32,6 +36,10 @@ export default function TeamForm({ initial }: Props) {
     image: initial?.image || "",
     emoji: initial?.emoji || "",
     order: initial?.order ?? 0,
+    whatsapp: initial?.whatsapp || "",
+    wechat: initial?.wechat || "",
+    facebook: initial?.facebook || "",
+    email: initial?.email || "",
   });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
@@ -149,6 +157,37 @@ export default function TeamForm({ initial }: Props) {
             onChange={(url) => setForm({ ...form, image: url })}
             label="Фото сотрудника"
           />
+        </div>
+
+        {/* Social links */}
+        <div className="rounded-xl p-6 space-y-4" style={{ background: "#0d1f35", border: "1px solid rgba(255,255,255,0.07)" }}>
+          <h3 className="text-white font-semibold text-sm">Социальные сети</h3>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div>
+              <label className="block text-xs text-white/50 mb-1.5">WhatsApp (номер с кодом)</label>
+              <input className="form-input" value={form.whatsapp || ""}
+                onChange={(e) => setForm({ ...form, whatsapp: e.target.value })}
+                placeholder="+905380390593" />
+            </div>
+            <div>
+              <label className="block text-xs text-white/50 mb-1.5">WeChat ID</label>
+              <input className="form-input" value={form.wechat || ""}
+                onChange={(e) => setForm({ ...form, wechat: e.target.value })}
+                placeholder="wechat_id" />
+            </div>
+            <div>
+              <label className="block text-xs text-white/50 mb-1.5">Facebook (ссылка)</label>
+              <input className="form-input" value={form.facebook || ""}
+                onChange={(e) => setForm({ ...form, facebook: e.target.value })}
+                placeholder="https://facebook.com/..." />
+            </div>
+            <div>
+              <label className="block text-xs text-white/50 mb-1.5">Email</label>
+              <input className="form-input" value={form.email || ""}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                placeholder="name@company.com" />
+            </div>
+          </div>
         </div>
 
         {error && <p className="text-red-400 text-sm">{error}</p>}

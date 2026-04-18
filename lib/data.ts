@@ -268,6 +268,10 @@ export interface TeamMember {
   emoji?: string;
   order: number;
   createdAt: string;
+  whatsapp?: string;
+  wechat?: string;
+  facebook?: string;
+  email?: string;
 }
 
 export async function getTeamMembers(): Promise<TeamMember[]> {
@@ -305,5 +309,56 @@ export async function deleteTeamMember(id: string): Promise<boolean> {
   const filtered = members.filter((m) => m.id !== id);
   if (filtered.length === members.length) return false;
   await setData("team", "team.json", filtered);
+  return true;
+}
+
+// --- Certificates ---
+
+export interface Certificate {
+  id: string;
+  title: Record<string, string>;
+  description: Record<string, string>;
+  fileUrl: string;
+  coverImage: string;
+  category: string;
+  order: number;
+  createdAt: string;
+}
+
+export async function getCertificates(): Promise<Certificate[]> {
+  const list = await getData<Certificate>("certificates", "certificates.json");
+  return list.slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+}
+
+export async function getCertificateById(id: string): Promise<Certificate | undefined> {
+  const certs = await getCertificates();
+  return certs.find((c) => c.id === id);
+}
+
+export async function createCertificate(data: Omit<Certificate, "id" | "createdAt">): Promise<Certificate> {
+  const certs = await getData<Certificate>("certificates", "certificates.json");
+  const cert: Certificate = {
+    ...data,
+    id: `cert-${crypto.randomUUID().slice(0, 8)}`,
+    createdAt: new Date().toISOString(),
+  };
+  await setData("certificates", "certificates.json", [cert, ...certs]);
+  return cert;
+}
+
+export async function updateCertificate(id: string, data: Partial<Omit<Certificate, "id" | "createdAt">>): Promise<Certificate | null> {
+  const certs = await getData<Certificate>("certificates", "certificates.json");
+  const idx = certs.findIndex((c) => c.id === id);
+  if (idx === -1) return null;
+  certs[idx] = { ...certs[idx], ...data };
+  await setData("certificates", "certificates.json", certs);
+  return certs[idx];
+}
+
+export async function deleteCertificate(id: string): Promise<boolean> {
+  const certs = await getData<Certificate>("certificates", "certificates.json");
+  const filtered = certs.filter((c) => c.id !== id);
+  if (filtered.length === certs.length) return false;
+  await setData("certificates", "certificates.json", filtered);
   return true;
 }

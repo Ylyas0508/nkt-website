@@ -1,7 +1,7 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { LayoutDashboard, Package, Newspaper, LogOut, ExternalLink, Layers, Settings, Inbox, Users } from "lucide-react";
+import { LayoutDashboard, Package, Newspaper, LogOut, ExternalLink, Layers, Settings, Inbox, Users, Award } from "lucide-react";
 
 const links = [
   { href: "/admin", label: "Главная", icon: LayoutDashboard, exact: true },
@@ -9,6 +9,7 @@ const links = [
   { href: "/admin/blog", label: "Блог", icon: Newspaper },
   { href: "/admin/categories", label: "Категории", icon: Layers },
   { href: "/admin/team", label: "Команда", icon: Users },
+  { href: "/admin/certificates", label: "Сертификаты", icon: Award },
   { href: "/admin/messages", label: "Сообщения", icon: Inbox },
   { href: "/admin/settings", label: "Настройки", icon: Settings },
 ];
