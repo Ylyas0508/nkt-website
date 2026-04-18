@@ -255,3 +255,54 @@ export async function updateAboutStats(data: Partial<AboutStats>): Promise<About
   await setSingleValue("aboutStats", updated);
   return updated;
 }
+
+// --- Team Members ---
+
+export interface TeamMember {
+  id: string;
+  name: Record<string, string>;
+  role: Record<string, string>;
+  description: Record<string, string>;
+  image: string;
+  emoji?: string;
+  order: number;
+  createdAt: string;
+}
+
+export async function getTeamMembers(): Promise<TeamMember[]> {
+  const list = await getData<TeamMember>("team", "team.json");
+  return list.slice().sort((a, b) => (a.order ?? 0) - (b.order ?? 0));
+}
+
+export async function getTeamMemberById(id: string): Promise<TeamMember | undefined> {
+  const members = await getTeamMembers();
+  return members.find((m) => m.id === id);
+}
+
+export async function createTeamMember(data: Omit<TeamMember, "id" | "createdAt">): Promise<TeamMember> {
+  const members = await getData<TeamMember>("team", "team.json");
+  const member: TeamMember = {
+    ...data,
+    id: `team-${crypto.randomUUID().slice(0, 8)}`,
+    createdAt: new Date().toISOString(),
+  };
+  await setData("team", "team.json", [...members, member]);
+  return member;
+}
+
+export async function updateTeamMember(id: string, data: Partial<Omit<TeamMember, "id" | "createdAt">>): Promise<TeamMember | null> {
+  const members = await getData<TeamMember>("team", "team.json");
+  const idx = members.findIndex((m) => m.id === id);
+  if (idx === -1) return null;
+  members[idx] = { ...members[idx], ...data };
+  await setData("team", "team.json", members);
+  return members[idx];
+}
+
+export async function deleteTeamMember(id: string): Promise<boolean> {
+  const members = await getData<TeamMember>("team", "team.json");
+  const filtered = members.filter((m) => m.id !== id);
+  if (filtered.length === members.length) return false;
+  await setData("team", "team.json", filtered);
+  return true;
+}

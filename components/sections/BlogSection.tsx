@@ -117,6 +117,17 @@ export default function BlogSection() {
               ))}
         </div>
 
+        {posts.length > 0 && (
+          <div className="text-center mt-10">
+            <a
+              href="/blog"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-semibold border transition-all hover:bg-white/5"
+              style={{ borderColor: "rgba(205,158,102,0.4)", color: "#cd9e66" }}
+            >
+              View All News <ArrowRight size={14} />
+            </a>
+          </div>
+        )}
       </div>
     </section>
   );

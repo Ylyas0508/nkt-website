@@ -1,13 +1,14 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { LayoutDashboard, Package, Newspaper, LogOut, ExternalLink, Layers, Settings, Inbox } from "lucide-react";
+import { LayoutDashboard, Package, Newspaper, LogOut, ExternalLink, Layers, Settings, Inbox, Users } from "lucide-react";
 
 const links = [
   { href: "/admin", label: "Dashboard", icon: LayoutDashboard, exact: true },
   { href: "/admin/products", label: "Products", icon: Package },
   { href: "/admin/blog", label: "Blog Posts", icon: Newspaper },
   { href: "/admin/categories", label: "Categories", icon: Layers },
+  { href: "/admin/team", label: "Team", icon: Users },
   { href: "/admin/messages", label: "Messages", icon: Inbox },
   { href: "/admin/settings", label: "Settings", icon: Settings },
 ];

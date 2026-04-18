@@ -2,68 +2,70 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
-import type { Product } from "@/lib/data";
-import { CATEGORIES } from "@/lib/constants";
+import type { TeamMember } from "@/lib/data";
 import { Save, ArrowLeft } from "lucide-react";
 import ImageUpload from "./ImageUpload";
 
 const LANGS = ["en", "ru", "zh", "tr"] as const;
-const LANG_LABELS = { en: "English", ru: "Русский", zh: "中文", tr: "Türkçe" };
+const LANG_LABELS: Record<string, string> = { en: "English", ru: "Русский", zh: "中文", tr: "Türkçe" };
 
-type FormData = {
+interface FormData {
   name: Record<string, string>;
+  role: Record<string, string>;
   description: Record<string, string>;
-  price: string;
-  category: string;
   image: string;
-};
-
-interface Props {
-  initial?: Product;
+  emoji: string;
+  order: number;
 }
 
-export default function ProductForm({ initial }: Props) {
+interface Props {
+  initial?: TeamMember;
+}
+
+export default function TeamForm({ initial }: Props) {
   const router = useRouter();
   const [activeLang, setActiveLang] = useState<"en" | "ru" | "zh" | "tr">("en");
   const [form, setForm] = useState<FormData>({
     name: initial?.name || { en: "", ru: "", zh: "", tr: "" },
+    role: initial?.role || { en: "", ru: "", zh: "", tr: "" },
     description: initial?.description || { en: "", ru: "", zh: "", tr: "" },
-    price: initial?.price || "Contact for pricing",
-    category: initial?.category || "oil-petroleum",
     image: initial?.image || "",
+    emoji: initial?.emoji || "",
+    order: initial?.order ?? 0,
   });
   const [saving, setSaving] = useState(false);
   const [error, setError] = useState("");
 
   const handleSave = async () => {
+    if (!form.name.en) { setError("English name is required"); return; }
     setSaving(true);
     setError("");
     try {
-      const url = initial ? `/api/products/${initial.id}` : "/api/products";
+      const url = initial ? `/api/team/${initial.id}` : "/api/team";
       const method = initial ? "PUT" : "POST";
       const res = await fetch(url, {
         method,
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(form),
       });
-      if (!res.ok) throw new Error("Save failed");
-      router.push("/admin/products");
+      if (!res.ok) throw new Error();
+      router.push("/admin/team");
       router.refresh();
     } catch {
       setError("Failed to save. Please try again.");
+      setSaving(false);
     }
-    setSaving(false);
   };
 
   return (
     <div className="p-8 max-w-3xl">
       <div className="flex items-center gap-4 mb-8">
-        <a href="/admin/products" className="flex items-center gap-1 text-white/50 hover:text-white transition-colors text-sm">
+        <a href="/admin/team" className="flex items-center gap-1 text-white/50 hover:text-white transition-colors text-sm">
           <ArrowLeft size={16} />
-          Products
+          Team
         </a>
         <span className="text-white/20">/</span>
-        <h1 className="text-xl font-bold text-white">{initial ? "Edit Product" : "Add New Product"}</h1>
+        <h1 className="text-xl font-bold text-white">{initial ? "Edit Team Member" : "Add Team Member"}</h1>
       </div>
 
       <div className="space-y-6">
@@ -87,59 +89,65 @@ export default function ProductForm({ initial }: Props) {
 
           <div className="space-y-4">
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Product Name ({LANG_LABELS[activeLang]})</label>
+              <label className="block text-xs text-white/50 mb-1.5">Name ({LANG_LABELS[activeLang]})</label>
               <input
                 className="form-input"
                 value={form.name[activeLang] || ""}
                 onChange={(e) => setForm({ ...form, name: { ...form.name, [activeLang]: e.target.value } })}
-                placeholder={`Product name in ${LANG_LABELS[activeLang]}`}
+                placeholder={`Name in ${LANG_LABELS[activeLang]}`}
+              />
+            </div>
+            <div>
+              <label className="block text-xs text-white/50 mb-1.5">Role ({LANG_LABELS[activeLang]})</label>
+              <input
+                className="form-input"
+                value={form.role[activeLang] || ""}
+                onChange={(e) => setForm({ ...form, role: { ...form.role, [activeLang]: e.target.value } })}
+                placeholder={`Role in ${LANG_LABELS[activeLang]}`}
               />
             </div>
             <div>
               <label className="block text-xs text-white/50 mb-1.5">Description ({LANG_LABELS[activeLang]})</label>
               <textarea
                 className="form-input resize-none"
-                rows={4}
+                rows={3}
                 value={form.description[activeLang] || ""}
                 onChange={(e) => setForm({ ...form, description: { ...form.description, [activeLang]: e.target.value } })}
-                placeholder={`Description in ${LANG_LABELS[activeLang]}`}
+                placeholder={`Short description in ${LANG_LABELS[activeLang]}`}
               />
             </div>
           </div>
         </div>
 
-        {/* Product details */}
+        {/* Visual details */}
         <div className="rounded-xl p-6 space-y-4" style={{ background: "#0d1f35", border: "1px solid rgba(255,255,255,0.07)" }}>
-          <h3 className="text-white font-semibold text-sm mb-2">Product Details</h3>
+          <h3 className="text-white font-semibold text-sm">Profile Details</h3>
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <div>
-              <label className="block text-xs text-white/50 mb-1.5">Category</label>
-              <select
-                className="form-input"
-                value={form.category}
-                onChange={(e) => setForm({ ...form, category: e.target.value })}
-              >
-                {CATEGORIES.map((cat) => (
-                  <option key={cat.id} value={cat.id} style={{ background: "#0d1f35" }}>
-                    {cat.id.replace(/-/g, " ").replace(/\b\w/g, (l) => l.toUpperCase())}
-                  </option>
-                ))}
-              </select>
-            </div>
-            <div>
-              <label className="block text-xs text-white/50 mb-1.5">Price / Terms</label>
+              <label className="block text-xs text-white/50 mb-1.5">Emoji (optional)</label>
               <input
                 className="form-input"
-                value={form.price}
-                onChange={(e) => setForm({ ...form, price: e.target.value })}
-                placeholder="e.g. Contact for pricing"
+                value={form.emoji}
+                onChange={(e) => setForm({ ...form, emoji: e.target.value })}
+                placeholder="👔"
+                maxLength={4}
+              />
+            </div>
+            <div>
+              <label className="block text-xs text-white/50 mb-1.5">Display Order</label>
+              <input
+                type="number"
+                className="form-input"
+                value={form.order}
+                onChange={(e) => setForm({ ...form, order: Number(e.target.value) })}
+                placeholder="1"
               />
             </div>
           </div>
           <ImageUpload
             value={form.image}
             onChange={(url) => setForm({ ...form, image: url })}
-            label="Product Image"
+            label="Profile Photo"
           />
         </div>
 
@@ -149,14 +157,14 @@ export default function ProductForm({ initial }: Props) {
           <button
             onClick={handleSave}
             disabled={saving}
-            className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all hover:brightness-110"
+            className="flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-semibold transition-all hover:brightness-110 disabled:opacity-50"
             style={{ background: "linear-gradient(135deg, #cd9e66, #d4af7a)", color: "#0a1628" }}
           >
             <Save size={15} />
-            {saving ? "Saving..." : "Save Product"}
+            {saving ? "Saving..." : "Save Team Member"}
           </button>
           <a
-            href="/admin/products"
+            href="/admin/team"
             className="px-6 py-2.5 rounded-xl text-sm font-semibold text-white/60 hover:text-white transition-colors"
             style={{ background: "rgba(255,255,255,0.05)" }}
           >

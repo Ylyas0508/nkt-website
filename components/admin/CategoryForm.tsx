@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 import { Save, ArrowLeft } from "lucide-react";
+import ImageUpload from "./ImageUpload";
 
 const LANGS = ["en", "ru", "zh", "tr"] as const;
 const LANG_LABELS: Record<string, string> = { en: "English", ru: "Русский", zh: "中文", tr: "Türkçe" };
@@ -160,27 +161,11 @@ export default function CategoryForm({ initial, isDefault }: Props) {
               </select>
             </div>
           </div>
-          <div>
-            <label className="block text-xs text-white/50 mb-1.5">Image URL</label>
-            <div className="flex gap-2 items-center">
-              <input
-                className="form-input flex-1"
-                value={form.image}
-                onChange={(e) => setForm({ ...form, image: e.target.value })}
-                placeholder="https://images.unsplash.com/photo-...?w=800"
-              />
-              {form.image && (
-                <img src={form.image} alt="" className="w-10 h-10 rounded-lg object-cover shrink-0"
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
-              )}
-            </div>
-          </div>
-          {form.image && (
-            <div className="rounded-xl overflow-hidden h-32 mt-1">
-              <img src={form.image} alt="Preview" className="w-full h-full object-cover opacity-70"
-                onError={(e) => { (e.target as HTMLImageElement).style.display = "none"; }} />
-            </div>
-          )}
+          <ImageUpload
+            value={form.image}
+            onChange={(url) => setForm({ ...form, image: url })}
+            label="Category Image"
+          />
         </div>
 
         {error && <p className="text-red-400 text-sm">{error}</p>}

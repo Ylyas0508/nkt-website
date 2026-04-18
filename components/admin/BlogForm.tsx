@@ -4,6 +4,7 @@ import { useState } from "react";
 import { useRouter } from "next/navigation";
 import type { BlogPost } from "@/lib/data";
 import { Save, ArrowLeft } from "lucide-react";
+import ImageUpload from "./ImageUpload";
 
 const LANGS = ["en", "ru", "zh", "tr"] as const;
 const LANG_LABELS = { en: "English", ru: "Русский", zh: "中文", tr: "Türkçe" };
@@ -146,20 +147,11 @@ export default function BlogForm({ initial }: { initial?: BlogPost }) {
               />
             </div>
           </div>
-          <div>
-            <label className="block text-xs text-white/50 mb-1.5">Cover Image URL</label>
-            <div className="flex gap-2">
-              <input
-                className="form-input flex-1"
-                value={form.image}
-                onChange={(e) => setField("image", e.target.value)}
-                placeholder="https://images.unsplash.com/..."
-              />
-              {form.image && (
-                <img src={form.image} alt="" className="w-10 h-10 rounded-lg object-cover shrink-0" />
-              )}
-            </div>
-          </div>
+          <ImageUpload
+            value={form.image}
+            onChange={(url) => setField("image", url)}
+            label="Cover Image"
+          />
         </div>
 
         {error && <p className="text-red-400 text-sm">{error}</p>}

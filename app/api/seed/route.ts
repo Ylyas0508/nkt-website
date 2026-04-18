@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { kv } from "@vercel/kv";
 import type { Product, BlogPost } from "@/lib/data";
+import { createTeamMember, getTeamMembers } from "@/lib/data";
 
 const SEED_PRODUCTS: Product[] = [
   {
@@ -203,12 +204,99 @@ export async function GET(req: Request) {
   const existingProducts = await kv.get("products");
   const existingBlog = await kv.get("blog");
 
-  if (existingProducts && existingBlog) {
-    return NextResponse.json({ message: "Already seeded", products: SEED_PRODUCTS.length, blog: SEED_BLOG.length });
+  let seededProducts = false;
+  let seededBlog = false;
+
+  if (!existingProducts) {
+    await kv.set("products", SEED_PRODUCTS);
+    seededProducts = true;
+  }
+  if (!existingBlog) {
+    await kv.set("blog", SEED_BLOG);
+    seededBlog = true;
   }
 
-  await kv.set("products", SEED_PRODUCTS);
-  await kv.set("blog", SEED_BLOG);
+  // Team seeding
+  const existingTeam = await getTeamMembers();
+  let seededTeam = 0;
+  if (existingTeam.length === 0) {
+    const teamSeed = [
+      {
+        emoji: "👔",
+        order: 1,
+        image: "",
+        name: { en: "Murat Berdymukhamedov", ru: "Мурат Бердымухамедов", zh: "穆拉特·别尔德穆哈梅多夫", tr: "Murat Berdymukhamedov" },
+        role: { en: "CEO / General Director", ru: "Генеральный директор", zh: "总经理", tr: "Genel Müdür" },
+        description: {
+          en: "Responsible for strategic development and international partnerships.",
+          ru: "Отвечает за стратегическое развитие и международное сотрудничество.",
+          zh: "负责公司战略发展和国际合作。",
+          tr: "Şirketin stratejik gelişimi ve uluslararası ortaklıklar.",
+        },
+      },
+      {
+        emoji: "🤝",
+        order: 2,
+        image: "",
+        name: { en: "Zhang Wei", ru: "Чжан Вэй", zh: "张伟", tr: "Zhang Wei" },
+        role: { en: "Deputy Director / Operations Manager", ru: "Заместитель директора", zh: "副总经理", tr: "Operasyon Müdürü" },
+        description: {
+          en: "Coordinates company operations and partnerships in China.",
+          ru: "Координация операций компании в Китае.",
+          zh: "负责中国业务协调。",
+          tr: "Çin operasyonlarını koordine eder.",
+        },
+      },
+      {
+        emoji: "🚢",
+        order: 3,
+        image: "",
+        name: { en: "Liu Fang", ru: "Лю Фан", zh: "刘芳", tr: "Liu Fang" },
+        role: { en: "International Trade Manager", ru: "Менеджер международной торговли", zh: "国际贸易经理", tr: "Uluslararası Ticaret Müdürü" },
+        description: {
+          en: "Handles import and export operations.",
+          ru: "Импорт и экспорт операции.",
+          zh: "负责进出口业务。",
+          tr: "İthalat ve ihracat operasyonları.",
+        },
+      },
+      {
+        emoji: "🚚",
+        order: 4,
+        image: "",
+        name: { en: "Chen Rui", ru: "Чэнь Жуй", zh: "陈睿", tr: "Chen Rui" },
+        role: { en: "Logistics Manager", ru: "Менеджер по логистике", zh: "物流经理", tr: "Lojistik Müdürü" },
+        description: {
+          en: "Manages shipping and delivery operations.",
+          ru: "Контроль перевозок.",
+          zh: "负责物流运输。",
+          tr: "Lojistik operasyonları.",
+        },
+      },
+      {
+        emoji: "💰",
+        order: 5,
+        image: "",
+        name: { en: "Li Mei", ru: "Ли Мэй", zh: "李梅", tr: "Li Mei" },
+        role: { en: "Finance & Administration Manager", ru: "Финансы и администрация", zh: "财务行政经理", tr: "Finans ve İdari Müdür" },
+        description: {
+          en: "Responsible for finance and office administration.",
+          ru: "Финансы и администрация.",
+          zh: "负责财务和行政管理。",
+          tr: "Finans ve ofis yönetimi.",
+        },
+      },
+    ];
+    for (const m of teamSeed) {
+      await createTeamMember(m);
+      seededTeam++;
+    }
+  }
 
-  return NextResponse.json({ ok: true, products: SEED_PRODUCTS.length, blog: SEED_BLOG.length });
+  return NextResponse.json({
+    ok: true,
+    products: seededProducts ? SEED_PRODUCTS.length : "already seeded",
+    blog: seededBlog ? SEED_BLOG.length : "already seeded",
+    team: seededTeam ? seededTeam : "already seeded",
+  });
 }

@@ -3,7 +3,7 @@
 import { Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 
-export default function DeleteButton({ id, type }: { id: string; type: "products" | "blog" | "categories" | "messages" }) {
+export default function DeleteButton({ id, type }: { id: string; type: "products" | "blog" | "categories" | "messages" | "team" }) {
   const router = useRouter();
 
   const handleDelete = async () => {
