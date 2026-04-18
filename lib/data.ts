@@ -133,6 +133,7 @@ export interface CategoryOverride {
   name?: Record<string, string>;
   description?: Record<string, string>;
   isCustom?: boolean;
+  hidden?: boolean;
 }
 
 export interface ContactMessage {

@@ -2,18 +2,25 @@ import { getCategoryOverrides } from "@/lib/data";
 import { CATEGORIES } from "@/lib/constants";
 import { Plus, Pencil } from "lucide-react";
 import DeleteButton from "@/components/admin/DeleteButton";
+import ru from "@/lib/translations/ru.json";
 
-const CATEGORY_LABELS: Record<string, string> = {
-  "oil-petroleum": "Oil & Petroleum",
-  chemicals: "Chemicals",
-  metallurgy: "Metallurgy",
-  agricultural: "Agricultural",
-  textiles: "Textiles",
-  automotive: "Automotive",
-  machinery: "Machinery",
-  sulfur: "Sulfur",
-  other: "Other",
-};
+type Dict = Record<string, string>;
+
+function getCatName(id: string, tKey: string | undefined, nameOverride: unknown): string {
+  // Saved override wins
+  if (nameOverride && typeof nameOverride === "object") {
+    const rec = nameOverride as Record<string, string>;
+    if (rec.ru) return rec.ru;
+    if (rec.en) return rec.en;
+  }
+  // Fall back to Russian translation
+  if (tKey) {
+    const key = `products.${tKey}.name`;
+    const val = (ru as Dict)[key];
+    if (val) return val;
+  }
+  return id;
+}
 
 export default async function CategoriesAdminPage() {
   const overrides = await getCategoryOverrides();
@@ -23,9 +30,9 @@ export default async function CategoriesAdminPage() {
   const allCategories = [
     ...CATEGORIES.map((cat) => {
       const ov = overrideMap.get(cat.id);
-      return ov ? { ...cat, ...ov, isCustom: false } : { ...cat, isCustom: false };
-    }),
-    ...overrides.filter((o) => o.isCustom),
+      return ov ? { ...cat, ...ov, tKey: cat.tKey, isCustom: false } : { ...cat, tKey: cat.tKey, isCustom: false };
+    }).filter((cat) => !(cat as unknown as Record<string, unknown>).hidden),
+    ...overrides.filter((o) => o.isCustom && !o.hidden),
   ];
 
   return (
@@ -57,9 +64,8 @@ export default async function CategoriesAdminPage() {
           </thead>
           <tbody>
             {allCategories.map((cat, i) => {
-              const name = (cat.name && typeof cat.name === "object")
-                ? (cat.name as Record<string, string>).en
-                : (typeof cat.name === "string" ? cat.name : CATEGORY_LABELS[cat.id] || cat.id);
+              const catAny = cat as unknown as Record<string, unknown>;
+              const name = getCatName(cat.id, catAny.tKey as string | undefined, cat.name);
               return (
                 <tr
                   key={cat.id}
@@ -100,9 +106,7 @@ export default async function CategoriesAdminPage() {
                       >
                         <Pencil size={14} />
                       </a>
-                      {cat.isCustom && (
-                        <DeleteButton id={cat.id} type="categories" />
-                      )}
+                      <DeleteButton id={cat.id} type="categories" />
                     </div>
                   </td>
                 </tr>
