@@ -143,17 +143,6 @@ export default function CertificatesSection() {
                     {desc && <p className="text-white/40 text-xs leading-relaxed mb-4 flex-1">{desc}</p>}
 
                     <div className="mt-auto flex gap-2">
-                      {/* Preview button (if image exists) */}
-                      {hasImage && (
-                        <button
-                          onClick={() => openLightbox(cert.id)}
-                          className="flex-1 flex items-center justify-center gap-1.5 py-2 px-3 rounded-xl text-xs font-semibold transition-all hover:bg-white/10"
-                          style={{ border: "1px solid rgba(205,158,102,0.3)", color: "#cd9e66" }}
-                        >
-                          <ZoomIn size={12} />
-                          Просмотр
-                        </button>
-                      )}
                       {/* Download button */}
                       {cert.fileUrl ? (
                         <a
