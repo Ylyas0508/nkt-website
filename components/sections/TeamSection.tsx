@@ -89,13 +89,13 @@ export default function TeamSection() {
                 style={{ boxShadow: "0 6px 20px rgba(10,22,40,0.06)" }}
               >
                 {/* Photo with gradient background */}
-                <div className="relative overflow-hidden" style={{ background: GRADIENTS[i % GRADIENTS.length], height: "200px" }}>
+                <div className="relative overflow-hidden" style={{ background: GRADIENTS[i % GRADIENTS.length], height: "260px" }}>
                   {m.image ? (
                     <img
                       src={m.image}
                       alt={name}
-                      className="w-full h-full object-cover object-top"
-                      style={{ borderRadius: "0" }}
+                      className="w-full h-full object-cover"
+                      style={{ objectPosition: "center 15%" }}
                     />
                   ) : (
                     <div className="w-full h-full flex items-center justify-center text-6xl">
