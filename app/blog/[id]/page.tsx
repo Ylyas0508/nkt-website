@@ -84,7 +84,7 @@ export default function BlogDetailPage() {
     <div style={{ background: "#0f2040", minHeight: "100vh" }}>
       {/* Hero */}
       <div className="relative h-80 md:h-96 overflow-hidden">
-        <img src={post.image} alt={title} className="w-full h-full object-cover" />
+        <img src={post.image} alt={title} className="w-full h-full object-cover object-top" />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(15,32,64,0.4) 0%, rgba(15,32,64,0.95) 100%)" }} />
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-10 w-full">
@@ -201,7 +201,7 @@ export default function BlogDetailPage() {
                 <div className="space-y-4">
                   {related.map((r) => (
                     <a key={r.id} href={`/blog/${r.id}`} className="flex gap-3 group">
-                      <img src={r.image} alt="" className="w-16 h-16 rounded-lg object-cover shrink-0" />
+                      <img src={r.image} alt="" className="w-16 h-16 rounded-lg object-cover object-top shrink-0" />
                       <div className="flex-1 min-w-0">
                         <p className="text-white text-sm font-medium leading-snug line-clamp-2 group-hover:text-gold-400 transition-colors" style={{ color: "white" }}>
                           {r.title[locale] || r.title.en}

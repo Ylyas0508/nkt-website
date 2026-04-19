@@ -54,7 +54,7 @@ export default function BlogIndexClient({ posts }: { posts: BlogPost[] }) {
                 style={{ background: "#142848", border: "1px solid rgba(255,255,255,0.07)" }}
               >
                 <div className="relative h-48 overflow-hidden">
-                  <img src={post.image} alt="" className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110" />
+                  <img src={post.image} alt="" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110" />
                   <div className="absolute inset-0" style={{ background: "rgba(10,22,40,0.35)" }} />
                   {post.category && (
                     <div
