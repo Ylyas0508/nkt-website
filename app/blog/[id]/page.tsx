@@ -83,8 +83,8 @@ export default function BlogDetailPage() {
   return (
     <div style={{ background: "#0f2040", minHeight: "100vh" }}>
       {/* Hero */}
-      <div className="relative h-80 md:h-96 overflow-hidden">
-        <img src={post.image} alt={title} className="w-full h-full object-cover object-top" />
+      <div className="relative overflow-hidden" style={{ height: "70vh", minHeight: "480px", maxHeight: "700px" }}>
+        <img src={post.image} alt={title} className="w-full h-full object-cover" style={{ objectPosition: "center 20%" }} />
         <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(15,32,64,0.4) 0%, rgba(15,32,64,0.95) 100%)" }} />
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-10 w-full">
