@@ -19,7 +19,14 @@ export default function BlogIndexClient({ posts }: { posts: BlogPost[] }) {
     <div style={{ background: "#0f2040", minHeight: "100vh" }}>
       {/* Hero */}
       <div className="relative py-20 md:py-28 overflow-hidden" style={{ background: "linear-gradient(135deg, #0f2040 0%, #142848 100%)" }}>
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 text-center">
+        {/* Decorative gold accent */}
+        <div
+          className="absolute inset-0 pointer-events-none opacity-30"
+          style={{
+            background: "radial-gradient(ellipse at top, rgba(205,158,102,0.18) 0%, transparent 55%)",
+          }}
+        />
+        <div className="relative max-w-6xl mx-auto px-4 sm:px-6 text-center">
           <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }}>
             <div className="flex items-center justify-center gap-2 text-sm mb-4" style={{ color: "rgba(255,255,255,0.4)" }}>
               <a href="/" className="hover:text-white transition-colors inline-flex items-center gap-1"><Home size={12} /> Home</a>
@@ -29,6 +36,8 @@ export default function BlogIndexClient({ posts }: { posts: BlogPost[] }) {
             <h1 className="text-4xl md:text-5xl font-bold text-white mb-4" style={{ fontFamily: "var(--font-playfair, serif)" }}>
               News &amp; Deals
             </h1>
+            {/* Gold separator */}
+            <div className="w-16 h-[2px] mx-auto mb-5" style={{ background: "linear-gradient(90deg, transparent, #cd9e66, transparent)" }} />
             <p className="text-white/60 max-w-2xl mx-auto text-base">
               Stay updated with our latest trade deals, market insights, and company news.
             </p>
@@ -50,12 +59,24 @@ export default function BlogIndexClient({ posts }: { posts: BlogPost[] }) {
                 viewport={{ once: true }}
                 transition={{ delay: (i % 6) * 0.08, duration: 0.5 }}
                 whileHover={{ y: -6 }}
-                className="rounded-2xl overflow-hidden group cursor-pointer flex flex-col"
+                className="rounded-2xl overflow-hidden group cursor-pointer flex flex-col transition-all duration-300 hover:shadow-[0_20px_50px_rgba(0,0,0,0.35)]"
                 style={{ background: "#142848", border: "1px solid rgba(255,255,255,0.07)" }}
               >
-                <div className="relative h-48 overflow-hidden">
-                  <img src={post.image} alt="" className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110" />
-                  <div className="absolute inset-0" style={{ background: "rgba(10,22,40,0.35)" }} />
+                <div className="relative h-56 overflow-hidden" style={{ background: "#0a1628" }}>
+                  {/* Blurred backdrop (same image) to fill empty space elegantly */}
+                  <img
+                    src={post.image}
+                    alt=""
+                    aria-hidden
+                    className="absolute inset-0 w-full h-full object-cover"
+                    style={{ filter: "blur(24px) brightness(0.5)", transform: "scale(1.1)" }}
+                  />
+                  {/* Main image — full, uncropped */}
+                  <img
+                    src={post.image}
+                    alt=""
+                    className="relative w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
+                  />
                   {post.category && (
                     <div
                       className="absolute top-3 left-3 flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold"
@@ -80,9 +101,9 @@ export default function BlogIndexClient({ posts }: { posts: BlogPost[] }) {
                   <p className="text-white/50 text-sm leading-relaxed line-clamp-3 flex-1">
                     {post.excerpt[locale] || post.excerpt.en}
                   </p>
-                  <div className="mt-4 pt-4 flex items-center gap-1" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
+                  <div className="mt-4 pt-4 flex items-center gap-1.5" style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}>
                     <span className="text-xs font-semibold uppercase tracking-wider" style={{ color: "#cd9e66" }}>Read More</span>
-                    <ArrowRight size={12} style={{ color: "#cd9e66" }} />
+                    <ArrowRight size={12} style={{ color: "#cd9e66" }} className="transition-transform duration-300 group-hover:translate-x-1" />
                   </div>
                 </div>
               </motion.a>

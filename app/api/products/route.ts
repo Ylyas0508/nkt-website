@@ -2,8 +2,13 @@ import { NextRequest, NextResponse } from "next/server";
 import { getProducts, createProduct } from "@/lib/data";
 import { getSession } from "@/lib/auth";
 
+export const dynamic = "force-dynamic";
+export const revalidate = 0;
+
 export async function GET() {
-  return NextResponse.json(await getProducts());
+  return NextResponse.json(await getProducts(), {
+    headers: { "Cache-Control": "no-store, must-revalidate" },
+  });
 }
 
 export async function POST(req: NextRequest) {

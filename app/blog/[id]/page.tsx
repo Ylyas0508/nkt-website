@@ -83,9 +83,23 @@ export default function BlogDetailPage() {
   return (
     <div style={{ background: "#0f2040", minHeight: "100vh" }}>
       {/* Hero */}
-      <div className="relative overflow-hidden" style={{ height: "70vh", minHeight: "480px", maxHeight: "700px" }}>
-        <img src={post.image} alt={title} className="w-full h-full object-cover" style={{ objectPosition: "center 20%" }} />
-        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(15,32,64,0.4) 0%, rgba(15,32,64,0.95) 100%)" }} />
+      <div className="relative overflow-hidden" style={{ height: "75vh", minHeight: "520px", maxHeight: "780px", background: "#0a1628" }}>
+        {/* Blurred backdrop (same image) */}
+        <img
+          src={post.image}
+          alt=""
+          aria-hidden
+          className="absolute inset-0 w-full h-full object-cover"
+          style={{ filter: "blur(32px) brightness(0.45)", transform: "scale(1.15)" }}
+        />
+        {/* Main image — full, uncropped */}
+        <img
+          src={post.image}
+          alt={title}
+          className="relative w-full h-full object-contain"
+        />
+        {/* Darkening gradient only at the bottom so title stays readable */}
+        <div className="absolute inset-0" style={{ background: "linear-gradient(to bottom, rgba(15,32,64,0) 0%, rgba(15,32,64,0.4) 60%, rgba(15,32,64,0.95) 100%)" }} />
         <div className="absolute inset-0 flex items-end">
           <div className="max-w-4xl mx-auto px-4 sm:px-6 pb-10 w-full">
             <motion.div

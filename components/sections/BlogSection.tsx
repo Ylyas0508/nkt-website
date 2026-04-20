@@ -22,9 +22,15 @@ export default function BlogSection() {
   const [posts, setPosts] = useState<BlogPost[]>([]);
 
   useEffect(() => {
-    fetch("/api/blog")
+    fetch("/api/blog", { cache: "no-store" })
       .then((r) => r.json())
-      .then((data) => setPosts(data.slice(0, 3)))
+      .then((data: BlogPost[]) => {
+        // Sort newest first, then take 3
+        const sorted = data
+          .slice()
+          .sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+        setPosts(sorted.slice(0, 3));
+      })
       .catch(() => {});
   }, []);
 
@@ -70,13 +76,21 @@ export default function BlogSection() {
                   className="rounded-2xl overflow-hidden group cursor-pointer flex flex-col"
                   style={{ background: "#0f2040", border: "1px solid rgba(255,255,255,0.07)" }}
                 >
-                  <div className="relative h-48 overflow-hidden">
+                  <div className="relative h-56 overflow-hidden" style={{ background: "#0a1628" }}>
+                    {/* Blurred backdrop of the same image — luxury fill */}
+                    <img
+                      src={post.image}
+                      alt=""
+                      aria-hidden
+                      className="absolute inset-0 w-full h-full object-cover"
+                      style={{ filter: "blur(24px) brightness(0.5)", transform: "scale(1.1)" }}
+                    />
+                    {/* Main image — full, uncropped */}
                     <img
                       src={post.image}
                       alt={post.title[locale] || post.title.en}
-                      className="w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110"
+                      className="relative w-full h-full object-contain transition-transform duration-500 group-hover:scale-105"
                     />
-                    <div className="absolute inset-0" style={{ background: "rgba(10,22,40,0.35)" }} />
                     {post.category && (
                       <div
                         className="absolute top-3 left-3 flex items-center gap-1 px-2 py-1 rounded-full text-xs font-semibold"
